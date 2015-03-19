@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+{% block body -%}
+
+    <h4>Listado</h4>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Lugar</th>
+            <th>Hora</th>
+            <th>Estatus</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('seminario_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.lugar }}</td>
+                <td>{{ entity.hora }}</td>
+                <td>{{ entity.estatus }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('seminario_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('seminario_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('seminario_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+
+{% endblock %}

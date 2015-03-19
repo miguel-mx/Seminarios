@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Seminario</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Lugar</th>
+                <td>{{ entity.lugar }}</td>
+            </tr>
+            <tr>
+                <th>Hora</th>
+                <td>{{ entity.hora }}</td>
+            </tr>
+            <tr>
+                <th>Estatus</th>
+                <td>{{ entity.estatus }}</td>
+            </tr>
+	    <tr>
+                <th>Responsables</th>
+                <td>{{ entity.responsable }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('seminario') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('seminario_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends '::base.html.twig'%}
+{% block title %} Visto desde main {% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('bundles/seminario/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block body %}
+	<div id="pagina" class="cfix">
+		<div id="contenido">
+			{% block contenido %}
+			Contenido MAIN
+			{% endblock %}
+			
+		</div>
+		<div id="sidebar">
+			{% block sidebar%}
+			
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{asset('bundles/seminario/js/bootstrap.js')}}" type="text/javascript">
+<script>
+  $('a[data-toggle="tab"]').on('hidden.bs.tab', function (e) {
+  e.target // newly activated tab
+  e.relatedTarget // previous active tab
+})
+</script>
+{% endblock %}
+

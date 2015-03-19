@@ -1,0 +1,30 @@
+seminario:
+    path:     /
+    defaults: { _controller: "SeminarioBundle:Seminario:index" }
+
+seminario_show:
+    path:     /{id}/show
+    defaults: { _controller: "SeminarioBundle:Seminario:show" }
+
+seminario_new:
+    path:     /new
+    defaults: { _controller: "SeminarioBundle:Seminario:new" }
+
+seminario_create:
+    path:     /create
+    defaults: { _controller: "SeminarioBundle:Seminario:create" }
+    requirements: { _method: post }
+
+seminario_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SeminarioBundle:Seminario:edit" }
+
+seminario_update:
+    path:     /{id}/update
+    defaults: { _controller: "SeminarioBundle:Seminario:update" }
+    requirements: { _method: post|put }
+
+seminario_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SeminarioBundle:Seminario:delete" }
+    requirements: { _method: post|delete }

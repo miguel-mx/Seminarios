@@ -1,0 +1,8 @@
+{% extends '::base.html.twig'%}
+{% block title %} Vista desde main {% endblock %}
+{% block stylesheets %}
+<link href="{{ asset('bundles/seminario/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/seminario/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+{% endblock %}
+

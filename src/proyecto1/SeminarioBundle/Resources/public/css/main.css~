@@ -1,0 +1,16 @@
+body, html{margen:0;padding:0;background:#eee;color:#333;}
+h1{margin:0 0 20px 0;border-bottom:1px solid #eee;color:#222;}
+
+#pagina{width:1000px;margin:20px auto;background:#fff;border-radius:6px;}
+#pagina .fila{display:block;padding:10px 20px;}
+#pagina .fila.par{background:#f5f5f5;}
+#pagina .fila.over{background:#f2f2f2;}
+#contenido{width:70%;float:left;}
+#sidebar{width:25%;float:right;}
+a{color:#333;text-decoration:none;}
+
+.cfix{*zoom: 1;}
+.cfix:before,.cfix:after{display:table;content: "";}
+.cfix:after{clear: both;}
+
+

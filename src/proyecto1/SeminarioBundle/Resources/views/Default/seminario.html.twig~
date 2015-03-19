@@ -1,0 +1,7 @@
+{% extends 'hugoalumnosBundle:Default:main.html.twig' %}
+{%block title%} Visto de {{alumno.nombre}}{% endblock %}
+{% block contenido %}
+<h1>Detalles del alumno</h1>
+<div>{{alumno.id}} - {{alumno.nombre}}</div>
+{% endblock %}
+

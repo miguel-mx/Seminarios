@@ -1,0 +1,91 @@
+{% extends '::base.html.twig' %}
+{% block body -%}
+
+    <h1>Evento list</h1>
+
+
+    <h2>JavaScript Date</h2>
+    <!-- container for JavaScript Date output -->
+    <div id="displayJsDate"></div>
+    {{ "now"|date("F") }}{{ "now"|date("Y") }}
+    <h2>Output asd</h2>
+    <div id="asd"></div>
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Seminario</th>
+                <th>Lugar</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Ponente</th>
+                <th>Origen</th>
+                <th>Platica</th>
+                <th>Resumen</th>
+                <th>Coment</th>
+                <th>Fechacap</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('evento_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.seminario }}</td>
+                <td>{{ entity.lugar }}</td>
+                <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.hora %}{{ entity.hora|date('H:i:s') }}{% endif %}</td>
+                <td>{{ entity.ponente }}</td>
+                <td>{{ entity.origen }}</td>
+                <td>{{ entity.platica }}</td>
+                <td>{{ entity.resumen }}</td>
+                <td>{{ entity.coment }}</td>
+                <td>{% if entity.fechaCap %}{{ entity.fechaCap|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('evento_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('evento_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('eventos_anteriores',{'seminario': entity.seminario.id}) }}">
+                                Eventos anteriores
+                            </a>
+                        </li>
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('evento_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=hugolvilli10%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FMexico_City" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
+{% endblock %}
+{% block javascripts %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ asset('bundles/seminario/js/moment.js')}}"></script>
+    <script>(function()
+        {
+
+            // instantiate a JavaScript Date object
+            var hora = moment().endOf('day').fromNow();
+
+
+
+            // display value of Date object in #displayJsDate div
+            var eDisplayDate = document.getElementById('displayJsDate');
+            eDisplayDate.innerHTML = hora;
+        })();</script>
+
+{% endblock %}

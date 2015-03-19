@@ -1,0 +1,45 @@
+evento:
+    path:     /
+    defaults: { _controller: "SeminarioBundle:Evento:index" }
+
+eventos_semana:
+    path:     /semana
+    defaults: { _controller: "SeminarioBundle:Evento:semana" }
+
+eventos_semanasig:
+    path:     /semanasig
+    defaults: { _controller: "SeminarioBundle:Evento:semanasig" }
+eventos_anteriores:
+    path:     /{seminario}/anteriores
+    defaults: { _controller: "SeminarioBundle:Evento:anteriores" }
+
+evento_show:
+    path:     /{id}/show
+    defaults: { _controller: "SeminarioBundle:Evento:show" }
+
+evento_new:
+    path:     /new
+    defaults: { _controller: "SeminarioBundle:Evento:new" }
+
+evento_create:
+    path:     /create
+    defaults: { _controller: "SeminarioBundle:Evento:create" }
+    requirements: { _method: post }
+
+evento_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SeminarioBundle:Evento:edit" }
+
+evento_update:
+    path:     /{id}/update
+    defaults: { _controller: "SeminarioBundle:Evento:update" }
+    requirements: { _method: post|put }
+
+evento_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SeminarioBundle:Evento:delete" }
+    requirements: { _method: post|delete }
+
+evento_ics:
+    path:     /ics
+    defaults: { _controller: "SeminarioBundle:Evento:ics" }

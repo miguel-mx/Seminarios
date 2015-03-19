@@ -1,0 +1,131 @@
+<?php
+
+namespace proyecto1\SeminarioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Otramas
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Otramas
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
+     */
+    private $nombre;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="proyecto1\SeminarioBundle\Entity\Seminario")
+     * @ORM\JoinColumn(name="seminario_id", referencedColumnName="id")
+     **/
+    private $seminario;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="edad", type="string", length=255)
+     */
+    private $edad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexo", type="string", length=255)
+     */
+    private $sexo;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     * @return Otramas
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string 
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set edad
+     *
+     * @param string $edad
+     * @return Otramas
+     */
+    public function setEdad($edad)
+    {
+        $this->edad = $edad;
+
+        return $this;
+    }
+
+    /**
+     * Get edad
+     *
+     * @return string 
+     */
+    public function getEdad()
+    {
+        return $this->edad;
+    }
+
+    /**
+     * Set sexo
+     *
+     * @param string $sexo
+     * @return Otramas
+     */
+    public function setSexo($sexo)
+    {
+        $this->sexo = $sexo;
+
+        return $this;
+    }
+
+    /**
+     * Get sexo
+     *
+     * @return string 
+     */
+    public function getSexo()
+    {
+        return $this->sexo;
+    }
+}

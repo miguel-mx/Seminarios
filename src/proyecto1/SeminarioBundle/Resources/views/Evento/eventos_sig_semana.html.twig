@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>SIGUIENTE SEMANA</h1>
+{% for entity in entities %}
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Seminario</th>
+                <td>{{ entity.seminario }}</td>
+            </tr>
+            <tr>
+                <th>Lugar</th>
+                <td>{{ entity.lugar }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ entity.fecha|date('Y-m-d') }}</td>
+            </tr>
+            <tr>
+                <th>Hora</th>
+                <td>{{ entity.hora|date('H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Ponente</th>
+                <td>{{ entity.ponente }}</td>
+            </tr>
+            <tr>
+                <th>Origen</th>
+                <td>{{ entity.origen }}</td>
+            </tr>
+            <tr>
+                <th>Platica</th>
+                <td>{{ entity.platica }}</td>
+            </tr>
+            <tr>
+                <th>Resumen</th>
+                <td>{{ entity.resumen }}</td>
+            </tr>
+            <tr>
+                <th>Coment</th>
+                <td>{{ entity.coment }}</td>
+            </tr>
+
+            <tr>
+                <th></th>
+                <td> <a href="{{ path('eventos_anteriores',{'seminario': entity.seminario.id}) }}">
+                        Eventos anteriores
+                    </a></td>
+            </tr>
+
+        </tbody>
+    </table>
+{% endfor %}
+
+{% endblock %}

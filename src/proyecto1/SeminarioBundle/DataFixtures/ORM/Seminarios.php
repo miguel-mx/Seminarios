@@ -1,0 +1,28 @@
+<?php
+// src/Cupon/SeminarioBundle/DataFixtures/ORM/Seminarios.php
+namespace proyecto1\SeminarioBundle\DataFixtures\ORM;
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use proyecto1\SeminarioBundle\Entity\Seminario;
+class Seminarios implements FixtureInterface
+{
+public function load(ObjectManager $manager)
+{
+$seminarios = array(
+array('nombre' => 'coloquio', 'lugar' => 'Auditorio','hora'=>'12:00','estatus'=>true),
+array('nombre' => 'coloquio2', 'lugar' => 'Auditorio','hora'=>'12:00','estatus'=>true),
+array('nombre' => 'coloquio3', 'lugar' => 'Auditorio','hora'=>'12:00','estatus'=>true),
+array('nombre' => 'coloquio4', 'lugar' => 'Auditorio','hora'=>'12:00','estatus'=>true)
+);
+foreach ($seminarios as $seminario) {
+$entidad = new Seminario();
+$entidad->setNombre($seminario['nombre']);
+$entidad->setLugar($seminario['lugar']);
+$entidad->setHora($seminario['hora']);
+$entidad->setEstatus($seminario['estatus']);
+$manager->persist($entidad);
+}
+$manager->flush();
+}
+}
+

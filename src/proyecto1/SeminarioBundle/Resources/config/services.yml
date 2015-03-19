@@ -1,0 +1,4 @@
+services:
+#    seminario.example:
+#        class: proyecto1\SeminarioBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

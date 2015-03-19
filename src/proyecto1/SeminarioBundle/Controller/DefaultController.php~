@@ -1,0 +1,52 @@
+<?php
+
+namespace proyecto1\SeminarioBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use proyecto1\SeminarioBundle\Entity\Seminario;
+use proyecto1\SeminarioBundle\Entity\Evento;
+use proyecto1\SeminarioBundle\Entity\Responsable;
+use proyecto1\SeminarioBundle\Form\Seminario\EventoType;
+
+
+class DefaultController extends Controller
+{
+    public function indexAction($name)
+    {
+        return $this->render('SeminarioBundle:Default:index.html.twig', array('name' => $name));
+    }
+    public function menuAction()
+    {
+        return $this->render('SeminarioBundle:Default:menu.html.twig');
+    }
+    public function seminariosAction()
+    {
+		$repository = $this->getDoctrine()->getRepository("SeminarioBundle:Seminario");
+		$seminarios = $repository->findAll();
+        return $this->render('SeminarioBundle:Default:seminarios.html.twig',array("seminarios"=>$seminarios));
+    }
+	public function seminarioAction($id)
+    {
+		$repository = $this->getDoctrine()->getRepository("SeminarioBundle:Seminario");
+		$seminario = $repository->find($id);
+        return $this->render('SeminarioBundle:Default:seminario.html.twig',array("seminario"=>$seminario));
+    }
+    public function registroAction(Request $peticion){
+
+        $evento = new Evento();
+        //$evento->setSeminario($seminario);
+        $formulario = $this->createForm(new EventoType(), $evento);
+        $formulario->handleRequest($peticion);
+        if ($formulario->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($evento);
+            $em->flush();
+            // return $this->redirect($this->generateUrl('seminarios'));
+        }
+        return $this->render('SeminarioBundle:Default:registro.html.twig', array('formulario' => $formulario->createView()));
+    }
+    
+
+}
