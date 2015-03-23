@@ -1,9 +1,65 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Evento creation</h1>
+    <h1>Crear Evento</h1>
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <fieldset>
+            <legend>Datos de Evento</legend>
+            <div>
+            <strong>{{ form_label(form.seminario,'Seminario:') }}</strong>
+            <div class="error">{{ form_errors(form.seminario) }}</div>
+            <span>{{ form_widget(form.seminario,{ 'attr': {
+                    'accesskey' : 'n',
+                    'tabindex' : 1,
+                    'class': 'destacado',
+                    'size': 1
+                } })
+                }}</span>
+                </div>
+            <div>
+            {{ form_label(form.lugar,'Lugar:') }}
+            {{ form_errors(form.lugar) }}
+            {{ form_widget(form.lugar) }}
+                </div>
+            <div>
+                {{ form_label(form.fecha,'Fecha:') }}
+                {{ form_errors(form.fecha) }}
+                {{ form_widget(form.fecha) }}
+            </div>
+            <div>
+                {{ form_label(form.hora,'Hora:') }}
+                {{ form_errors(form.hora) }}
+                {{ form_widget(form.hora) }}
+            </div>
+            <div>
+                {{ form_label(form.ponente,'Ponente:') }}
+                {{ form_errors(form.ponente) }}
+                {{ form_widget(form.ponente) }}
+            </div>
+            <div>
+                {{ form_label(form.origen,'Origen:') }}
+                {{ form_errors(form.origen) }}
+                {{ form_widget(form.origen) }}
+            </div>
+            <div>
+                {{ form_label(form.platica,'Platica:') }}
+                {{ form_errors(form.platica) }}
+                {{ form_widget(form.platica) }}
+            </div>
+            <div>
+                {{ form_label(form.resumen,'Resumen:') }}
+                {{ form_errors(form.resumen) }}
+                {{ form_widget(form.resumen) }}
+            </div>
+            <div>
+                {{ form_label(form.coment,'Comentario:') }}
+                {{ form_errors(form.coment) }}
+                {{ form_widget(form.coment) }}
+            </div>
+        </fieldset>
+    {{ form_end(form) }}
 
-    {{ form(form) }}
 
     <ul class="record_actions">
     <li>

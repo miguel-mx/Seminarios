@@ -86,7 +86,7 @@ class EventoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('3', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('evento_show', array('id' => $entity->getId())));
         }
 
         return $this->render('SeminarioBundle:Evento:new.html.twig', array(
@@ -270,11 +270,16 @@ class EventoController extends Controller
 
     public function icsAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCal();
+
+
+
         $provider = $this->get('bomo_ical.ics_provider');
 
         $tz = $provider->createTimezone();
         $tz
-            ->setTzid('Mexico/Mexico_City')
+            ->setTzid('America/Mexico_City')
             ->setProperty('X-LIC-LOCATION', $tz->getTzid())
             ;
 
@@ -285,18 +290,27 @@ class EventoController extends Controller
             ->setDescription('Calendario de Coloquio y Seminario CCM-UNAM Campus Morelia')
         ;
 
-        $datetime = new \Datetime('2015-03-20 13:00');
+        $datetime = new \Datetime('2015-03-23 13:00');
+        foreach ($eventos_semana as $evento_semana) {
 
-        $event = $cal->newEvent();
-        $event
-            ->setStartDate($datetime)
-            ->setEndDate($datetime->modify('+1 hours'))
-            ->setName('Coloquio CCM')
-            ->setDescription('Marcos Capistrán - CIMAT')
-            ->setComment('Por qué es poco probable infectarse de VIH?')
-            ->setLocation('Auditorio CCM')
-            ->setOrganizer('Noé Barcenas')
-        ;
+            $nombre = $evento_semana->getSeminario()->getNombre();
+            $descripcion = $evento_semana->getPlatica();
+            $comentario = $evento_semana->getComent();
+            $localizacion = $evento_semana->getOrigen();
+            $organizador = $evento_semana->getOrigen();
+
+
+            $event = $cal->newEvent();
+            $event
+                ->setStartDate($datetime)
+                ->setEndDate($datetime->modify('+1 hours'))
+                ->setName($nombre)
+                ->setDescription($descripcion)
+                ->setComment($comentario)
+                ->setLocation($localizacion)
+                ->setOrganizer($organizador)
+            ;
+        }
 
         $calStr = $cal->returnCalendar();
 
@@ -309,5 +323,30 @@ class EventoController extends Controller
             )
         );
     }
+    public function mailAction()
+    {
+        $mailer = $this->get('mailer');
+        $message = $mailer->createMessage()
+            ->setSubject('You have Completed Registration!')
+            ->setFrom('hugolvilli10@gmail.com')
+            ->setTo('hugol_villi10@hotmail.com')
+            ->setBody('hola')
+            /*
+             * If you also want to include a plaintext version of the message
+            ->addPart(
+                $this->renderView(
+                    'Emails/registration.txt.twig',
+                    array('name' => $name)
+                ),
+                'text/plain'
+            )
+            */
+        ;
+        $mailer->send($message);
+        return $this->render('SeminarioBundle:Evento:otra.html.twig');
+    }
+
+
 }
+
 

@@ -43,3 +43,7 @@ evento_delete:
 evento_ics:
     path:     /ics
     defaults: { _controller: "SeminarioBundle:Evento:ics" }
+
+evento_mail:
+    path:     /mail
+    defaults: { _controller: "SeminarioBundle:Evento:mail" }

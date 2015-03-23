@@ -23,7 +23,7 @@ class EventoType extends AbstractType
             ->add('platica')
             ->add('resumen')
             ->add('coment')
-            ->add('fechaCap')
+           // ->add('fechaCap')
             ->add('seminario')
         ;
     }
