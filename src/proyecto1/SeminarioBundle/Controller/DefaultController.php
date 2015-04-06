@@ -1,7 +1,7 @@
 <?php
 
 namespace proyecto1\SeminarioBundle\Controller;
-
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use proyecto1\SeminarioBundle\Entity\Seminario;
@@ -20,5 +20,8 @@ class DefaultController extends Controller
     {
         return $this->render('SeminarioBundle:Default:menu.html.twig');
     }
-    
+    public function adminAction()
+    {
+        return new Response('Admin page!');
+    }
 }

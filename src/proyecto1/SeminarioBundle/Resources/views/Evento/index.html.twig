@@ -38,7 +38,7 @@
                 <td>{{ entity.ponente }}</td>
                 <td>{{ entity.origen }}</td>
                 <td>{{ entity.platica }}</td>
-                <td>{{ entity.resumen }}</td>
+                <td>{{ entity.resumen | wordwrap(10) | nl2br }}</td>
                 <td>{{ entity.coment }}</td>
                 <td>{% if entity.fechaCap %}{{ entity.fechaCap|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>

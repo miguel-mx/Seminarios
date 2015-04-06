@@ -17,6 +17,7 @@ class EventoController extends Controller
 {
     public function anterioresAction($seminario)
     {
+
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosAnteriores($seminario);
         //findOneBy(array('ciudad' => $ciudad, 'fecha_publicacion' => new \DateTime('today')));
@@ -120,6 +121,7 @@ class EventoController extends Controller
      */
     public function newAction()
     {
+
         $entity = new Evento();
         $form   = $this->createCreateForm($entity);
 
@@ -271,7 +273,7 @@ class EventoController extends Controller
     public function icsAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCal();
+        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendar();
 
 
 
@@ -292,6 +294,10 @@ class EventoController extends Controller
 
         $datetime = new \Datetime('2015-03-23 13:00');
         foreach ($eventos_semana as $evento_semana) {
+            $fecha= $evento_semana->getFecha();
+            $hora= $evento_semana->getHora();
+
+            $fechahora = new \DateTime($fecha->format('Y-m-d') .' ' .$hora->format('H:i:s'));
 
             $nombre = $evento_semana->getSeminario()->getNombre();
             $descripcion = $evento_semana->getPlatica();
@@ -302,7 +308,7 @@ class EventoController extends Controller
 
             $event = $cal->newEvent();
             $event
-                ->setStartDate($datetime)
+                ->setStartDate($fechahora)
                 ->setEndDate($datetime->modify('+1 hours'))
                 ->setName($nombre)
                 ->setDescription($descripcion)
