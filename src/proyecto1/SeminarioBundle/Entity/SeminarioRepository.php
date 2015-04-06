@@ -66,3 +66,4 @@ class SeminarioRepository extends EntityRepository
 
 }
 
+

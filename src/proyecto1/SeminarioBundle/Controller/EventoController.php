@@ -329,7 +329,7 @@ class EventoController extends Controller
             )
         );
     }
-    public function mailAction()
+    public function mailAction(Request $request)
     {
         $mailer = $this->get('mailer');
         $message = $mailer->createMessage()
@@ -349,6 +349,7 @@ class EventoController extends Controller
             */
         ;
         $mailer->send($message);
+        //$request->getSession()->getFlashBag()->add('success', 'Your email has been sent! Thanks!');
         return $this->render('SeminarioBundle:Evento:otra.html.twig');
     }
 
