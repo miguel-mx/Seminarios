@@ -1,0 +1,30 @@
+aviso:
+    path:     /
+    defaults: { _controller: "SeminarioBundle:Aviso:index" }
+
+aviso_show:
+    path:     /{id}/show
+    defaults: { _controller: "SeminarioBundle:Aviso:show" }
+
+aviso_new:
+    path:     /new
+    defaults: { _controller: "SeminarioBundle:Aviso:new" }
+
+aviso_create:
+    path:     /create
+    defaults: { _controller: "SeminarioBundle:Aviso:create" }
+    requirements: { _method: post }
+
+aviso_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "SeminarioBundle:Aviso:edit" }
+
+aviso_update:
+    path:     /{id}/update
+    defaults: { _controller: "SeminarioBundle:Aviso:update" }
+    requirements: { _method: post|put }
+
+aviso_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "SeminarioBundle:Aviso:delete" }
+    requirements: { _method: post|delete }

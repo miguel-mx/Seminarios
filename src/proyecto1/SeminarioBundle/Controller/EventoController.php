@@ -293,6 +293,7 @@ class EventoController extends Controller
         ;
 
         $datetime = new \Datetime('2015-03-23 13:00');
+        $cad='';
         foreach ($eventos_semana as $evento_semana) {
             $fecha= $evento_semana->getFecha();
             $hora= $evento_semana->getHora();
@@ -304,6 +305,7 @@ class EventoController extends Controller
             $comentario = $evento_semana->getComent();
             $localizacion = $evento_semana->getOrigen();
             $organizador = $evento_semana->getOrigen();
+            $cad= $cad.$nombre."<br/>".$comentario;
 
 
             $event = $cal->newEvent();
@@ -329,14 +331,35 @@ class EventoController extends Controller
             )
         );
     }
-    public function mailAction(Request $request)
+    public function mailAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
+        //$hola = $eventos_semana[0]->getPlatica();
+        $cad='';
+        foreach ($eventos_semana as $evento_semana) {
+            $fecha = $evento_semana->getFecha();
+            $hora = $evento_semana->getHora();
+
+            $fechahora = new \DateTime($fecha->format('Y-m-d') . ' ' . $hora->format('H:i:s'));
+
+            $nombre = $evento_semana->getSeminario()->getResponsables();
+            $res= $nombre[0];
+            $descripcion = $evento_semana->getPlatica();
+            $comentario = $evento_semana->getResumen();
+            $localizacion = $evento_semana->getOrigen();
+            $organizador = $evento_semana->getOrigen();
+            $cad = $res . "\n" . $comentario."\n".$cad."\n";
+        }
         $mailer = $this->get('mailer');
         $message = $mailer->createMessage()
-            ->setSubject('You have Completed Registration!')
-            ->setFrom('hugolvilli10@gmail.com')
-            ->setTo('hugol_villi10@hotmail.com')
-            ->setBody('hola')
+            ->setSubject('Seminarios de la semana Centro de Ciencias Matemáticas XD')
+            ->setFrom('usuariosccm15@gmail.com')
+            ->setTo('abner1991@outlook.es'
+               # 'abner1991@outlook.es'=> 'A name'
+            )
+            ->setBody($cad)
+            //->addPart($hola.'<br>'.'<q>Here is the message itself</q>', 'text/html')
             /*
              * If you also want to include a plaintext version of the message
             ->addPart(
@@ -350,7 +373,10 @@ class EventoController extends Controller
         ;
         $mailer->send($message);
         //$request->getSession()->getFlashBag()->add('success', 'Your email has been sent! Thanks!');
-        return $this->render('SeminarioBundle:Evento:otra.html.twig');
+        //return $this->render('SeminarioBundle:Evento:otra.html.twig');
+        //return $this->redirectToRoute('eventos_semana');
+        return $this->redirect($this->generateUrl('eventos_semana'));
+
     }
 
 
