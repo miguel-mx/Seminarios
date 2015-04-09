@@ -12,7 +12,7 @@ class MailCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this->setName('email:events')
-            ->setDescription('Send e-mail list');
+            ->setDescription('Envia eventos a emails de usuarios ');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -45,7 +45,9 @@ class MailCommand extends ContainerAwareCommand
             ->setBody($cad)
 
         ;
-        $mailer->send($mensaje);
+        $resul=$mailer->send($mensaje);
+        $output->writeln($cad);
+
 
 
     }
