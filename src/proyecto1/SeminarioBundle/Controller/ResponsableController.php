@@ -40,6 +40,10 @@ class ResponsableController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Your changes were saved!'
+            );
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
