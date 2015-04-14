@@ -15,20 +15,21 @@ class EventoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lugar')
+            ->add('seminario')
+            ->add('lugar','text',array(
+                'required'=>false))
             ->add('fecha')
             ->add('hora')
             ->add('ponente')
             ->add('origen')
             ->add('platica')
-            ->add('resumen')
-            ->add('coment')
-           // ->add('fechaCap')
-            ->add('seminario')
+            ->add('resumen','text',array('required' => false))
+            ->add('coment','text',array('required' => false))
+
         ;
     }
     
-    /**
+    /**x
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)

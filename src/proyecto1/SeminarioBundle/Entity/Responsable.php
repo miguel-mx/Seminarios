@@ -167,7 +167,8 @@ class Responsable
     }
     public function __toString()
     {
-        return $this->getNombre();
+        return $this->getNombre().' '.$this->getApellidos();
+
     }
 
     /**

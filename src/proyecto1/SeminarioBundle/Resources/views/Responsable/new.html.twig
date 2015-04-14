@@ -1,9 +1,54 @@
-{% extends '::base.html.twig' %}
+{% extends 'SeminarioBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Responsable creation</h1>
+    <br>
 
-    {{ form(form) }}
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <fieldset>
+        <legend>Datos de Responsable</legend>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+
+                    {{ form_label(form.nombre,'Nombre:') }}
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    {{ form_label(form.apellidos,'Apellidos:') }}
+                    {{ form_errors(form.apellidos) }}
+                    {{ form_widget(form.apellidos) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    {{ form_label(form.email,'Email:') }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    {{ form_label(form.institucion,'Institucion:') }}
+                    {{ form_errors(form.institucion) }}
+                    {{ form_widget(form.institucion) }}
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+
+    </fieldset>
+    {{ form_end(form) }}
 
         <ul class="record_actions">
     <li>

@@ -77,14 +77,14 @@ class Evento
     /**
      * @var string
      *
-     * @ORM\Column(name="resumen", type="text")
+     * @ORM\Column(name="resumen", type="text",nullable=true)
      */
     private $resumen;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="coment", type="text")
+     * @ORM\Column(name="coment", type="text",nullable=true)
      */
     private $coment;
 
