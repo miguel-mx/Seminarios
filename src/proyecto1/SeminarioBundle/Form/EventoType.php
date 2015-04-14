@@ -16,8 +16,8 @@ class EventoType extends AbstractType
     {
         $builder
             ->add('lugar')
-            ->add('fecha')
-            ->add('hora')
+            ->add('fecha', 'date', array('input' => 'datetime','widget' => 'single_text','format' => 'dd-MM-yyyy',))
+            ->add('hora', 'time', array('input' => 'datetime','widget' => 'choice',))
             ->add('ponente')
             ->add('origen')
             ->add('platica')

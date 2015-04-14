@@ -18,19 +18,42 @@
                 }}</span>
                 </div>
             <div>
-            {{ form_label(form.lugar,'Lugar:') }}
-            {{ form_errors(form.lugar) }}
-            {{ form_widget(form.lugar) }}
-                </div>
+                {{ form_label(form.lugar,'Lugar:') }}
+                {{ form_errors(form.lugar) }}
+                {{ form_widget(form.lugar) }}
+            </div>
+            {#
             <div>
-                {{ form_label(form.fecha,'Fecha:') }}
-                {{ form_errors(form.fecha) }}
                 {{ form_widget(form.fecha) }}
             </div>
-            <div>
+            #}
+            <div ng-controller="DatepickerCtrl" class="row">
+                <div>
+                    {{ form_label(form.fecha,'Fecha:') }}
+                </div>
+                <div>
+                    {{ form_errors(form.fecha) }}
+                </div>
+                <div class="col-md-3">
+                    <p class="input-group">
+                        <input type="date" id="proyecto1_seminariobundle_evento_fecha" name="proyecto1_seminariobundle_evento[fecha]" required="required" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2017-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                    </p>
+                </div>
+                {% do form.fecha.setRendered %}
+            </div>
+
+            <div ng-controller="TimepickerCtrl" class="row">
+
                 {{ form_label(form.hora,'Hora:') }}
                 {{ form_errors(form.hora) }}
                 {{ form_widget(form.hora) }}
+                {# <input timepicker type="time" id="proyecto1_seminariobundle_evento_hora" name="proyecto1_seminariobundle_evento[hora]" required="required" ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="false">
+                {% verbatim %}
+                Time: {{mytime | date:'HH:mm' }} {{mytime}}
+                {% endverbatim %} #}
             </div>
             <div>
                 {{ form_label(form.ponente,'Ponente:') }}
@@ -58,16 +81,21 @@
                 {{ form_widget(form.coment) }}
             </div>
         </fieldset>
-    {{ form_end(form) }}
+    {# {{ form_end(form) }} #}
+    {{ form_rest(form) }}
+
+{% endblock %}
 
 
-    <ul class="record_actions">
-    <li>
-        <a href="{{ path('evento') }}">
-            Back to the list
-        </a>
-    </li>
-        <li>{{ render(controller('SeminarioBundle:Seminario:index')) }}</li>
+{% block js %}
 
-    </ul>
+    {{ parent() }}
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_es-mx.js"></script>
+    <script src="{{ asset('bundles/seminario/js/ui-bootstrap-tpls-0.12.1.min.js') }}"></script>
+    <script src="{{ asset('bundles/seminario/js/datepicker.js') }}" ></script>
+    <script src="{{ asset('bundles/seminario/js/timepicker.js') }}" ></script>
+
+
+
 {% endblock %}
