@@ -1,9 +1,50 @@
-{% extends '::base.html.twig' %}
+{% extends 'SeminarioBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Seminario edit</h1>
-
-    {{ form(edit_form) }}
+    <br>
+    {{ form_start(edit_form) }}
+         {{ form_errors(edit_form) }}
+    <fieldset>
+        <legend>Datos de Seminario</legend>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(edit_form.nombre,'Nombre:') }}
+                    {{ form_errors(edit_form.nombre) }}
+                    {{ form_widget(edit_form.nombre) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(edit_form.lugar,'Lugar:') }}
+                    {{ form_errors(edit_form.lugar) }}
+                    {{ form_widget(edit_form.lugar) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(edit_form.hora,'Hora:') }}
+                    {{ form_errors(edit_form.hora) }}
+                    {{ form_widget(edit_form.hora) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(edit_form.estatus,'Estatus:') }}
+                    {{ form_errors(edit_form.estatus) }}
+                    {{ form_widget(edit_form.estatus) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(edit_form.responsables,'Responsables:') }}
+                    {{ form_errors(edit_form.responsables) }}
+                    {{ form_widget(edit_form.responsables,{'attr':{'class':'select2'}}) }}
+                </div>
+            </div>
+        </div>
+    </fieldset>
 
         <ul class="record_actions">
     <li>

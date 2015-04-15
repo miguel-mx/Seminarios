@@ -39,11 +39,10 @@ class Seminario
      * @ORM\Column(name="lugar", type="string", length=255)
      */
     private $lugar;
-
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="hora", type="string", length=255)
+     * @ORM\Column(name="hora", type="time")
      */
     private $hora;
 

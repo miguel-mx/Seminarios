@@ -3,13 +3,6 @@
 
     <h1>Evento list</h1>
 
-
-    <h2>JavaScript Date</h2>
-    <!-- container for JavaScript Date output -->
-    <div id="displayJsDate"></div>
-    {{ "now"|date("F") }}{{ "now"|date("Y") }}
-    <h2>Output asd</h2>
-    <div id="asd"></div>
     <table class="records_list">
         <thead>
             <tr>
@@ -64,28 +57,10 @@
 
         <ul>
         <li>
-            <a href="{{ path('evento_new') }}">
-                Create a new entry
+            <a href="{{ path('seminario') }}">
+                Crear Evento
             </a>
         </li>
     </ul>
-
-{% endblock %}
-{% block javascripts %}
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="{{ asset('bundles/seminario/js/moment.js')}}"></script>
-    <script>(function()
-        {
-
-            // instantiate a JavaScript Date object
-            var hora = moment().endOf('day').fromNow();
-
-
-
-            // display value of Date object in #displayJsDate div
-            var eDisplayDate = document.getElementById('displayJsDate');
-            eDisplayDate.innerHTML = hora;
-        })();</script>
 
 {% endblock %}

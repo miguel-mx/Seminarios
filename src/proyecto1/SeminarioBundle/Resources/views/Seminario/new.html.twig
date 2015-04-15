@@ -1,8 +1,56 @@
-{% extends '::base.html.twig' %}
+{% extends 'SeminarioBundle::layout.html.twig' %}
 {% block body %}
-    <h1>Seminario creation</h1>
+    <br>
 
-    {{ form(form) }}
+
+    {{ form_start(form) }}
+         {{ form_errors(form) }}
+    <fieldset>
+        <legend>Datos de Seminario</legend>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(form.nombre,'Nombre:') }}
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(form.lugar,'Lugar:') }}
+                    {{ form_errors(form.lugar) }}
+                    {{ form_widget(form.lugar) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(form.hora,'Hora:') }}
+                    {{ form_errors(form.hora) }}
+                    {{ form_widget(form.hora) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(form.estatus,'Estatus:') }}
+                    {{ form_errors(form.estatus) }}
+                    {{ form_widget(form.estatus) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_label(form.responsables,'Responsables:') }}
+                    {{ form_errors(form.responsables) }}
+                    {{ form_widget(form.responsables,{'attr':{'class':'select2'}}) }}
+                </div>
+            </div>
+            <br>
+        </div>
+
+
+
+    </fieldset>
+    {{ form_end(form) }}
 
 
 
@@ -15,3 +63,4 @@
     
 </ul>
 {% endblock %}
+

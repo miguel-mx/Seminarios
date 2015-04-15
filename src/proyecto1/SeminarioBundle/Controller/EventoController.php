@@ -1,11 +1,10 @@
 <?php
 
 namespace proyecto1\SeminarioBundle\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use proyecto1\SeminarioBundle\Entity\Seminario;
 use proyecto1\SeminarioBundle\Entity\Evento;
 use proyecto1\SeminarioBundle\Form\EventoType;
 
@@ -81,15 +80,18 @@ class EventoController extends Controller
         $entity = new Evento();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+        //$entity->getSeminario()->getLugar();
 
         if ($form->isValid()) {
 
-            //TODO UPDATE ASSOCIATION
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Your changes were saved!'
+            );
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
             return $this->redirect($this->generateUrl('evento_show', array('id' => $entity->getId())));
         }
 
@@ -122,10 +124,16 @@ class EventoController extends Controller
      * Displays a form to create a new Evento entity.
      *
      */
-    public function newAction()
+    public function newAction($id)
     {
-
+        $seminar= new Seminario();
+        $em = $this->getDoctrine()->getManager();
+        $seminar = $em->getRepository('SeminarioBundle:Seminario')->find($id);
         $entity = new Evento();
+        $entity->setLugar($seminar->getLugar());
+        $entity->setHora($seminar->getHora());
+        $entity->setSeminario($seminar);
+
         $form   = $this->createCreateForm($entity);
 
         return $this->render('SeminarioBundle:Evento:new.html.twig', array(
@@ -169,6 +177,7 @@ class EventoController extends Controller
         $efecha = $entity->getFecha();
         if ( $efecha < $fecha ) {
             throw $this->createNotFoundException('No se puede editar.');
+
         }
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Evento entity.');
