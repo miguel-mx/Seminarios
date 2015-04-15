@@ -83,10 +83,12 @@ class EventoController extends Controller
         //$entity->getSeminario()->getLugar();
 
         if ($form->isValid()) {
+
             $request->getSession()->getFlashBag()->add(
                 'notice',
                 'Your changes were saved!'
             );
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

@@ -18,7 +18,7 @@ class EventoType extends AbstractType
             ->add('seminario')
             ->add('lugar','text',array(
                 'required'=>false))
-            ->add('fecha')
+            ->add('fecha', 'date', array('input' => 'datetime','widget' => 'single_text','format' => 'dd-MM-yyyy',))
             ->add('hora')
             ->add('ponente')
             ->add('origen')

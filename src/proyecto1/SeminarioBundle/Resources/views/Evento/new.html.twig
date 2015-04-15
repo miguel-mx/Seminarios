@@ -19,7 +19,24 @@
                     <div class="col-md-6">
                         {{ form_label(form.fecha,'Fecha:') }}
                         {{ form_errors(form.fecha) }}
-                        {{ form_widget(form.fecha) }}
+                        {# {{ form_widget(form.fecha) }} #}
+                        <div ng-controller="DatepickerCtrl" class="row">
+                            <div>
+                                {{ form_label(form.fecha,'Fecha:') }}
+                            </div>
+                            <div>
+                                {{ form_errors(form.fecha) }}
+                            </div>
+                            <div class="col-md-3">
+                                <p class="input-group">
+                                    <input type="date" id="proyecto1_seminariobundle_evento_fecha" name="proyecto1_seminariobundle_evento[fecha]" required="required" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2017-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                                </p>
+                            </div>
+                            {% do form.fecha.setRendered %}
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -77,6 +94,15 @@
         </a>
     </li>
 
-
-    </ul>
 {% endblock %}
+
+        {% block js %}
+
+        {{ parent() }}
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_es-mx.js"></script>
+        <script src="{{ asset('bundles/seminario/js/ui-bootstrap-tpls-0.12.1.min.js') }}"></script>
+        <script src="{{ asset('bundles/seminario/js/datepicker.js') }}" ></script>
+        <script src="{{ asset('bundles/seminario/js/timepicker.js') }}" ></script>
+
+       {% endblock %}
