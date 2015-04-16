@@ -16,12 +16,12 @@ class DefaultController extends Controller
     {
         return $this->render('SeminarioBundle:Default:index.html.twig', array('name' => $name));
     }
-    public function menuAction()
+    /*public function menuAction()
     {
         return $this->render('SeminarioBundle:Default:menu.html.twig');
     }
     public function adminAction()
     {
         return new Response('Admin page!');
-    }
+    }*/
 }

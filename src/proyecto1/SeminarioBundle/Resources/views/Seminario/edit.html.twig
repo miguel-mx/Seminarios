@@ -2,56 +2,60 @@
 
 {% block body -%}
     <br>
-    {{ form_start(edit_form) }}
-         {{ form_errors(edit_form) }}
-    <fieldset>
-        <legend>Datos de Seminario</legend>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_start(edit_form) }}
+            {{ form_errors(edit_form) }}
+            <fieldset>
+                <legend>Datos de Seminario</legend>
+                <br>
+
+                <div class="form-group">
                     {{ form_label(edit_form.nombre,'Nombre:') }}
                     {{ form_errors(edit_form.nombre) }}
-                    {{ form_widget(edit_form.nombre) }}
+                    {{ form_widget(edit_form.nombre,{'attr':{'class':'form-control'}}) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+
+                <div class="form-group">
                     {{ form_label(edit_form.lugar,'Lugar:') }}
                     {{ form_errors(edit_form.lugar) }}
-                    {{ form_widget(edit_form.lugar) }}
+                    {{ form_widget(edit_form.lugar,{'attr':{'class':'form-control'}}) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="form-group">
                     {{ form_label(edit_form.hora,'Hora:') }}
                     {{ form_errors(edit_form.hora) }}
                     {{ form_widget(edit_form.hora) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_label(edit_form.estatus,'Estatus:') }}
-                    {{ form_errors(edit_form.estatus) }}
-                    {{ form_widget(edit_form.estatus) }}
+                <div class="form-group checkbox">
+                    <label>
+                        {{ form_errors(edit_form.estatus) }}
+                        {{ form_widget(edit_form.estatus) }}
+                        Activo
+                    </label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="form-group">
                     {{ form_label(edit_form.responsables,'Responsables:') }}
                     {{ form_errors(edit_form.responsables) }}
-                    {{ form_widget(edit_form.responsables,{'attr':{'class':'select2'}}) }}
+                    {{ form_widget(edit_form.responsables,{'attr':{'class':'select2 form-control'}}) }}
                 </div>
-            </div>
-        </div>
-    </fieldset>
+                <div class="form-group">
+                    <i class="fa fa-refresh"></i>
+                    {{ form_widget(edit_form.submit,{'label':'Actualizar '}) }}
+                </div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('seminario') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+                {{ form_end(edit_form) }}
+            </fieldset>
+
+            <ul class="record_actions">
+                <li>
+                    <a href="{{ path('seminario') }}">
+                        Back to the list
+                    </a>
+                </li>
+                <li>{{ form(delete_form) }}</li>
+            </ul>
+            <a class="btn btn-danger" href="#">
+                <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+        </div>
+    </div>
 {% endblock %}

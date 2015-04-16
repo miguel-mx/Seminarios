@@ -1,9 +1,9 @@
 seminario_logout:
     path:     /logout
 
-seminario_admin:
-    path:     /admin
-    defaults: { _controller: "SeminarioBundle:Default:admin" }
+#seminario_admin:
+#    path:     /admin
+#    defaults: { _controller: "SeminarioBundle:Default:admin" }
 
 seminario_aviso:
     resource: "@SeminarioBundle/Resources/config/routing/aviso.yml"

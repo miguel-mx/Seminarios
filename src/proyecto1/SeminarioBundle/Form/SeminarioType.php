@@ -20,7 +20,6 @@ class SeminarioType extends AbstractType
             ->add('hora')
             ->add('estatus','checkbox',array('required' => false))
             ->add('responsables')
-            ->add('crear','submit')
         ;
     }
     

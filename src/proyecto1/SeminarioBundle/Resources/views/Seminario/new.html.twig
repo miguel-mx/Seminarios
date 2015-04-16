@@ -1,66 +1,64 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
 {% block body %}
-    <br>
 
+    <div class="row">
+        <div class="col-md-6">
+            <br>
 
-    {{ form_start(form) }}
-         {{ form_errors(form) }}
-    <fieldset>
-        <legend>Datos de Seminario</legend>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <fieldset>
+                <legend>Datos de Seminario</legend>
+                <br>
+                <div class="form-group">
+                    {{ form_label(form.responsables,'Responsables:') }}
+                    {{ form_errors(form.responsables) }}
+                    {{ form_widget(form.responsables,{'attr':{'class':'select2 form-control'}}) }}
+                </div>
+                <div class="form-group">
                     {{ form_label(form.nombre,'Nombre:') }}
                     {{ form_errors(form.nombre) }}
-                    {{ form_widget(form.nombre) }}
+                    {{ form_widget(form.nombre,{'attr':{'class':'form-control'}}) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="form-group">
                     {{ form_label(form.lugar,'Lugar:') }}
                     {{ form_errors(form.lugar) }}
-                    {{ form_widget(form.lugar) }}
+                    {{ form_widget(form.lugar,{'attr':{'class':'form-control'}}) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="form-group">
                     {{ form_label(form.hora,'Hora:') }}
                     {{ form_errors(form.hora) }}
                     {{ form_widget(form.hora) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_label(form.estatus,'Estatus:') }}
-                    {{ form_errors(form.estatus) }}
-                    {{ form_widget(form.estatus) }}
+                <div class="form-group checkbox">
+                    <label>
+                        {{ form_errors(form.estatus) }}
+                        {{ form_widget(form.estatus) }}
+                        Activo
+                    </label>
                 </div>
+                <br>
+
+
+            </fieldset>
+
+            <div>
+                {{ form_label(form.submit,'Guardar') }}
+                {{ form_widget(form.submit,{'label':'Guardar'},{'attr':{'class':'btn btn-default'}}) }}
+
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_label(form.responsables,'Responsables:') }}
-                    {{ form_errors(form.responsables) }}
-                    {{ form_widget(form.responsables,{'attr':{'class':'select2'}}) }}
-                </div>
-            </div>
-            <br>
+            {{ form_end(form) }}
+
+            <ul class="record_actions">
+                <li>
+                    <a href="{{ path('seminario') }}">
+                        Back to the list
+                    </a>
+                </li>
+
+            </ul>
+
         </div>
-
-
-
-    </fieldset>
-    {{ form_end(form) }}
-
-
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('seminario') }}">
-            Back to the list
-        </a>
-    </li>
-    
-</ul>
+    </div>
 {% endblock %}
 
