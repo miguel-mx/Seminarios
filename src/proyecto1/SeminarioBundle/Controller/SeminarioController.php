@@ -176,7 +176,10 @@ class SeminarioController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Tus cambios fueron guardados!'
+            );
             return $this->redirect($this->generateUrl('seminario_edit', array('id' => $id)));
         }
 
@@ -202,7 +205,10 @@ class SeminarioController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Seminario entity.');
             }
-
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Seminario eliminado con exito!'
+            );
             $em->remove($entity);
             $em->flush();
         }
@@ -222,7 +228,7 @@ class SeminarioController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('seminario_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar','attr' => array('class' => 'btn btn-danger'),))
             ->getForm()
         ;
     }

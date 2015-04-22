@@ -23,7 +23,7 @@ class EventoType extends AbstractType
             ->add('ponente')
             ->add('origen')
             ->add('platica')
-            ->add('resumen','text',array('required' => false))
+            ->add('resumen','textarea',array('required' => false))
             ->add('coment','text',array('required' => false))
 
         ;

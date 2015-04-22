@@ -2,7 +2,7 @@
 {% block body %}
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-3">
             <br>
 
             {{ form_start(form) }}
@@ -13,17 +13,17 @@
                 <div class="form-group">
                     {{ form_label(form.responsables,'Responsables:') }}
                     {{ form_errors(form.responsables) }}
-                    {{ form_widget(form.responsables,{'attr':{'class':'select2 form-control'}}) }}
+                    {{ form_widget(form.responsables,{'attr':{'class':'select2 form-control','placeholder':'Requerido: responsable o lista de responsables'}}) }}
                 </div>
                 <div class="form-group">
                     {{ form_label(form.nombre,'Nombre:') }}
                     {{ form_errors(form.nombre) }}
-                    {{ form_widget(form.nombre,{'attr':{'class':'form-control'}}) }}
+                    {{ form_widget(form.nombre,{'attr':{'class':'form-control','placeholder':'Nombre'}}) }}
                 </div>
                 <div class="form-group">
                     {{ form_label(form.lugar,'Lugar:') }}
                     {{ form_errors(form.lugar) }}
-                    {{ form_widget(form.lugar,{'attr':{'class':'form-control'}}) }}
+                    {{ form_widget(form.lugar,{'attr':{'class':'form-control','placeholder':'Lugar'}}) }}
                 </div>
                 <div class="form-group">
                     {{ form_label(form.hora,'Hora:') }}
@@ -49,14 +49,11 @@
             </div>
             {{ form_end(form) }}
 
-            <ul class="record_actions">
-                <li>
-                    <a href="{{ path('seminario') }}">
-                        Back to the list
+            <br>
+                    <a href="{{ path('seminario') }}" class="btn btn-default" >
+                        Regresar a lista
                     </a>
-                </li>
 
-            </ul>
 
         </div>
     </div>

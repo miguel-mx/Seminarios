@@ -1,60 +1,59 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
+{% block nav %}
 
+{% endblock %}
 {% block body -%}
-    <br>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <br>
 
 
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
-    <fieldset>
-        <legend>Datos de Responsable</legend>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <fieldset>
+                <legend>Datos de Responsable</legend>
+                <br>
+                <div class="form-group">
                     {{ form_label(form.nombre,'Nombre:') }}
                     {{ form_errors(form.nombre) }}
-                    {{ form_widget(form.nombre) }}
+                    {{ form_widget(form.nombre,{'attr':{'class':'form-control','placeholder':'Nombre de responsable'}}) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="form-group">
 
                     {{ form_label(form.apellidos,'Apellidos:') }}
                     {{ form_errors(form.apellidos) }}
-                    {{ form_widget(form.apellidos) }}
+                    {{ form_widget(form.apellidos,{'attr':{'class':'form-control','placeholder':'Apellidos'}}) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="form-group">
 
                     {{ form_label(form.email,'Email:') }}
                     {{ form_errors(form.email) }}
-                    {{ form_widget(form.email) }}
+                    {{ form_widget(form.email,{'attr':{'class':'form-control','placeholder':'Emails'}}) }}
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="form-group">
 
                     {{ form_label(form.institucion,'Institucion:') }}
                     {{ form_errors(form.institucion) }}
-                    {{ form_widget(form.institucion) }}
+                    {{ form_widget(form.institucion,{'attr':{'class':'form-control','placeholder':'Nombre de la Institución'}}) }}
+
                 </div>
+
+                <br>
+
+
+            </fieldset>
+            <div>
+                {{ form_label(form.submit,'Guardar') }}
+                {{ form_widget(form.submit,{'label':'Guardar'},{'attr':{'class':'btn btn-default'}}) }}
+
             </div>
+            {{ form_end(form) }}
+                <br>
+
+                    <a href="{{ path('responsable') }} " class="btn btn-default">
+                        Ir a lista
+                    </a>
+
         </div>
-
-        <br>
-
-
-    </fieldset>
-    {{ form_end(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('responsable') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    </div>
 {% endblock %}

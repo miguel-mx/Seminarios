@@ -175,7 +175,10 @@ class ResponsableController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Tus cambios fueron guardados!'
+            );
             return $this->redirect($this->generateUrl('responsable_edit', array('id' => $id)));
         }
 
@@ -201,6 +204,10 @@ class ResponsableController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Responsable entity.');
             }
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Responsable eliminado exitosamente!'
+            );
 
             $em->remove($entity);
             $em->flush();
@@ -221,7 +228,7 @@ class ResponsableController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('responsable_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar','attr' => array('class' => 'btn btn-danger'),))
             ->getForm()
         ;
     }

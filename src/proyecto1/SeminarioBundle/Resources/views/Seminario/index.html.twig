@@ -1,7 +1,26 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
+{% block nav %}
+
+    <li>
+        <a href="{{ path('seminario_new') }}">
+            Crear Seminario
+        </a>
+    </li>
+{% endblock %}
 {% block body -%}
-    <br>
-    <h4>Listado</h4>
+<br>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ flashMessage }}
+            </div>
+
+        {% endfor %}
+        <legend>Lista seminarios</legend>
+        <br>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -39,13 +58,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('seminario_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+</div>
+    </div>
 
 {% endblock %}

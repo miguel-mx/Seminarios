@@ -59,52 +59,48 @@
 
                 {{ form_label(form.ponente,'Ponente:') }}
                 {{ form_errors(form.ponente) }}
-                {{ form_widget(form.ponente,{'attr':{'class':'form-control'}}) }}
+                {{ form_widget(form.ponente,{'attr':{'class':'form-control','placeholder':'Nombre de Ponente'}}) }}
 
             </div>
             <div class="form-group">
 
                 {{ form_label(form.origen,'Origen:') }}
                 {{ form_errors(form.origen) }}
-                {{ form_widget(form.origen,{'attr':{'class':'form-control'}}) }}
+                {{ form_widget(form.origen,{'attr':{'class':'form-control','placeholder':'Origen ponente'}}) }}
 
             </div>
             <div class="form-group">
 
                 {{ form_label(form.platica,'Platica:') }}
                 {{ form_errors(form.platica) }}
-                {{ form_widget(form.platica,{'attr':{'class':'form-control'}}) }}
+                {{ form_widget(form.platica,{'attr':{'class':'form-control','placeholder':'Platica o tema'}}) }}
 
             </div>
             <div class="form-group">
 
                 {{ form_label(form.resumen,'Resumen:') }}
                 {{ form_errors(form.resumen) }}
-                {{ form_widget(form.resumen,{'attr':{'class':'form-control'}}) }}
+                {{ form_widget(form.resumen,{'attr':{'class':'form-control','placeholder':'No requerido: Breve resumen'}}) }}
 
             </div>
             <div class="form-group">
 
                 {{ form_label(form.coment,'Comentario:') }}
                 {{ form_errors(form.coment) }}
-                {{ form_widget(form.coment,{'attr':{'class':'form-control'}}) }}
+                {{ form_widget(form.coment,{'attr':{'class':'form-control','placeholder':'No requerido: Comentario'}}) }}
 
             </div>
             <br>
         </fieldset>
         <div>
-            {{ form_label(form.submit,'Guardar') }}
-            {{ form_widget(form.submit,{'label':'Guardar'},{'attr':{'class':'btn btn-default'}}) }}
 
+            {#{{ form_label(form.submit,'Guardar') }}#}
+            {{ form_widget(form.submit,{'label':'Guardar'},{'attr':{'class':'btn btn-success'}}) }}
+            <br>
         </div>
         {{ form_end(form) }}
 
-
-
-
-        <a class="btn btn-default" href="{{ path('evento') }}">Ver seminarios</a>
-
-
+        {#<a class="btn btn-default" href="{{ path('evento') }}">Ver seminarios</a>#}
         {% endblock %}
 
         {% block js %}

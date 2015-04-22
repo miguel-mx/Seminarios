@@ -3,7 +3,17 @@
 {% block body -%}
     <br>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-md-offset-3">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
+
+            {% endfor %}
+
+
             {{ form_start(edit_form) }}
             {{ form_errors(edit_form) }}
             <fieldset>

@@ -1,16 +1,127 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Evento edit</h1>
+<br>
 
-    {{ form(edit_form) }}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ flashMessage }}
+            </div>
+
+        {% endfor %}
+        {{ form_start(edit_form) }}
+        {{ form_errors(edit_form) }}
+        <fieldset>
+            <legend>Datos de Evento</legend>
+            <br>
+            <div class="form-group">
+
+                {{ form_label(edit_form.seminario,'Seminario:') }}
+                {{ form_errors(edit_form.seminario) }}
+                {{ form_widget(edit_form.seminario,{'attr':{'class':'form-control'}}) }}
+
+            </div>
+            <div class="form-group">
+
+                {{ form_label(edit_form.lugar,'Lugar:') }}
+                {{ form_errors(edit_form.lugar) }}
+                {{ form_widget(edit_form.lugar,{'attr':{'class':'form-control'}}) }}
+
+            </div>
+
+            <div class="form-group">
+                {{ form_label(edit_form.fecha,'Fecha:') }}
+                {{ form_errors(edit_form.fecha) }}
+                {# {{ form_widget(form.fecha) }} #}
+                <div ng-controller="DatepickerCtrl" class="row">
+                    {#<div>
+                        {{ form_label(form.fecha,'Fecha:') }}
+                    </div>
+                    <div>
+                        {{ form_errors(form.fecha) }}
+                    </div>#}
+                    <div class="col-md-3">
+                        <p class="input-group">
+                            <input type="date" id="proyecto1_seminariobundle_evento_fecha" name="proyecto1_seminariobundle_evento[fecha]" required="required" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2017-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                        </p>
+                    </div>
+                    {% do edit_form.fecha.setRendered %}
+                </div>
+            </div>
+            <div class="form-group">
+
+                {{ form_label(edit_form.hora,'Hora:') }}
+                {{ form_errors(edit_form.hora) }}
+                {{ form_widget(edit_form.hora) }}
+
+            </div>
+            <div class="form-group">
+
+                {{ form_label(edit_form.ponente,'Ponente:') }}
+                {{ form_errors(edit_form.ponente) }}
+                {{ form_widget(edit_form.ponente,{'attr':{'class':'form-control'}}) }}
+
+            </div>
+            <div class="form-group">
+
+                {{ form_label(edit_form.origen,'Origen:') }}
+                {{ form_errors(edit_form.origen) }}
+                {{ form_widget(edit_form.origen,{'attr':{'class':'form-control'}}) }}
+
+            </div>
+            <div class="form-group">
+
+                {{ form_label(edit_form.platica,'Platica:') }}
+                {{ form_errors(edit_form.platica) }}
+                {{ form_widget(edit_form.platica,{'attr':{'class':'form-control'}}) }}
+
+            </div>
+            <div class="form-group">
+
+                {{ form_label(edit_form.resumen,'Resumen:') }}
+                {{ form_errors(edit_form.resumen) }}
+                {{ form_widget(edit_form.resumen,{'attr':{'class':'form-control'}}) }}
+
+            </div>
+            <div class="form-group">
+
+                {{ form_label(edit_form.coment,'Comentario:') }}
+                {{ form_errors(edit_form.coment) }}
+                {{ form_widget(edit_form.coment,{'attr':{'class':'form-control'}}) }}
+
+            </div>
+            <div class="form-group">
+                <i class="fa fa-refresh"></i>
+                {{ form_widget(edit_form.submit,{'label':'Actualizar '}) }}
+            </div>
+
+            {{ form_end(edit_form) }}
+        </fieldset>
+
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('evento') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
-{% endblock %}
+            <li>
+                <a href="{{ path('evento') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+        {% endblock %}
+        {% block js %}
+
+            {{ parent() }}
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_es-mx.js"></script>
+            <script src="{{ asset('bundles/seminario/js/ui-bootstrap-tpls-0.12.1.min.js') }}"></script>
+            <script src="{{ asset('bundles/seminario/js/datepicker.js') }}" ></script>
+            <script src="{{ asset('bundles/seminario/js/timepicker.js') }}" ></script>
+
+        {% endblock %}

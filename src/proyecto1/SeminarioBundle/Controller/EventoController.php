@@ -236,7 +236,10 @@ class EventoController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Tus cambios fueron guardados!'
+            );
             return $this->redirect($this->generateUrl('evento_edit', array('id' => $id)));
         }
 
@@ -262,7 +265,10 @@ class EventoController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Evento entity.');
             }
-
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Evento eliminado exitosamente!'
+            );
             $em->remove($entity);
             $em->flush();
         }
@@ -282,7 +288,7 @@ class EventoController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('evento_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar','attr' => array('class' => 'btn btn-danger'),))
             ->getForm()
         ;
     }

@@ -1,46 +1,32 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
 {% block body -%}
-    <h1>Eventos Anteriores</h1>
+    <br>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1><small><i class="fa fa-book"></i> Eventos anteriores</small></h1>
+            <hr>
+            {#{{ "Saturday this week" |date('d') }}#}
+            {% for entity in entities %}
+                <h3>{{ entity.seminario }}<small> {{ entity.lugar }}</small></h3>
+                {% for responsable in entity.seminario.responsables %}
+                    {#<li><a href="http://hugo.local/app_dev.php/responsable/{{ responsable.id }}/show">{{ responsable.nombre }} {{ responsable.apellidos }}</a></li>#}
+                    {#<a href="{{ path('responsable_show', { 'id': responsable.id }) }}">{{ responsable.nombre }} {{ responsable.apellidos }}</a></li>#}
+                    <h4>{{ responsable.nombre }} {{ responsable.apellidos }}</h4>
+                {% endfor %}
+                <div class="well well-lg">
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Lugar</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Ponente</th>
-                <th>Origen</th>
-                <th>Platica</th>
-                <th>Resumen</th>
-                <th>Coment</th>
-                <th>Fechacap</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('evento_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.lugar }}</td>
-                <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if entity.hora %}{{ entity.hora|date('H:i:s') }}{% endif %}</td>
-                <td>{{ entity.ponente }}</td>
-                <td>{{ entity.origen }}</td>
-                <td>{{ entity.platica }}</td>
-                <td>{{ entity.resumen }}</td>
-                <td>{{ entity.coment }}</td>
-                <td>{% if entity.fechaCap %}{{ entity.fechaCap|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('evento_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <p align="center"><b>{{ entity.platica }}</b></p>
+                    <h4>{{ entity.ponente }}<small> {{ entity.origen }}</small></h4>
+                    <hr>
+                    <p align="justify" >{{ entity.resumen }}</p>
+                    <p>{{ entity.coment }}</p>
+                    <hr>
+                    <h5 align="right">{{ entity.fecha|date('d-m-Y') }} {{ entity.hora|date('H:i') }} hrs</h5>
 
-    {% endblock %}
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

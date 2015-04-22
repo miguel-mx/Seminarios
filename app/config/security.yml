@@ -11,7 +11,7 @@ security:
             memory:
                 users:
                     hugo:  { password: hug , roles: [ 'ROLE_USER' ] }
-                    admin: { password: hugo , roles: [ 'ROLE_ADMIN' ] }
+                    admin: { password: hugol , roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
 
