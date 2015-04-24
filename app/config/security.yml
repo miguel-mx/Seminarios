@@ -5,24 +5,38 @@ security:
             #cost: 12
 
 
+    role_hierarchy:
+        ROLE_USUARIO: ROLE_USER
+        ROLE_ADMIN: ROLE_USUARIO
+
+
 
     providers:
         in_memory:
             memory:
                 users:
-                    hugo:  { password: hug , roles: [ 'ROLE_USER' ] }
-                    admin: { password: hugol , roles: [ 'ROLE_ADMIN' ] }
+                    hugo:  { password: passxx , roles: [ 'ROLE_USUARIO' ] }
+                    admin: { password: password , roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
 
-        secured_area:
+        seminario:
             pattern:    ^/
-            anonymous: ~
+            http_basic: ~
+            logout:
+                path:   /logout
+                target: /evento
+
+        secured_area:
+            pattern:    ^/ #cualquier peticion entrante
+            anonymous: ~ #acceso usuarios anonimos
             http_basic: ~
             #stateless:  false
             logout:
-                path:   /evento/evento_logout
-                target: /seminario
+                path:   /logout
+                target: /evento
+               # invalidate_session: true
+
                   #delete_cookies:
                    # admin: { path: /evento, domain: null }
 
@@ -30,7 +44,9 @@ security:
     access_control:
        # - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
       # - { path: ^/evento, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/evento, roles: ROLE_USER }
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+
+       - { path: ^/seminario, roles: ROLE_ADMIN } #cualquier URL que coincida con la expresión /admin o /admin/*
+
+
 
 

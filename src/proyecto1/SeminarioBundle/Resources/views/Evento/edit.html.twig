@@ -97,26 +97,25 @@
                 {{ form_widget(edit_form.coment,{'attr':{'class':'form-control'}}) }}
 
             </div>
-            <div class="form-group">
+           {# <div class="form-group">
                 <i class="fa fa-refresh"></i>
                 {{ form_widget(edit_form.submit,{'label':'Actualizar '}) }}
             </div>
 
-            {{ form_end(edit_form) }}
+            {{ form_end(edit_form) }}#}
         </fieldset>
 
 
-        <ul class="record_actions">
-            <li>
-                <a href="{{ path('evento') }}">
-                    Back to the list
-                </a>
-            </li>
-            <li>{{ form(delete_form) }}</li>
-        </ul>
+        <div class="row">
+            <div class="col-md-2"> {{ form_widget(edit_form.submit,{'label':'Actualizar ','attr':{'class':'btn btn-default'}}) }}</div>
+            <div class="col-md-2">{{ form(delete_form) }}</div>
+            <div class="col-md-2"><a href="{{ path('evento') }}" class="btn btn-default" >Ir a lista</a></div>
+        </div>
+        {{ form_end(edit_form) }}
+        <br>
         {% endblock %}
-        {% block js %}
 
+        {% block js %}
             {{ parent() }}
             <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.2.15/angular-locale_es-mx.js"></script>

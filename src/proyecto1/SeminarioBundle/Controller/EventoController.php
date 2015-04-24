@@ -61,11 +61,6 @@ class EventoController extends Controller
      * Lists all Evento entities.
      *
      */
-    /*public function logoutAction()
-    {
-        $this->container->get('security.context')->setToken(NULL);
-
-    }*/
     public function indexAction()
     {
 

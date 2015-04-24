@@ -48,6 +48,4 @@ evento_mail:
     path:     /mail
     defaults: { _controller: "SeminarioBundle:Evento:mail" }
 
-evento_mail:
-    path:     /evento_logout
-#    defaults: { _controller: "SeminarioBundle:Evento:logout" }
+
