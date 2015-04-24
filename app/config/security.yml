@@ -1,36 +1,41 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-            #algorithm: bcrypt
-            #cost: 12
-
-
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
 
     providers:
         in_memory:
             memory:
                 users:
-                    hugo:  { password: hug , roles: [ 'ROLE_USER' ] }
-                    admin: { password: hugol , roles: [ 'ROLE_ADMIN' ] }
+                    hugo:  { password: $2a$04$hgiCgCDptrRc4YflkLdTeOmsY7DVTOx94n/1p7Tj0CXo9sSXzLJaO, roles: [ 'ROLE_USER' ] }
+                    miguel:  { password: $2a$04$QpBMKODUP6k.ylQhBuSxFu8XnzaklIN6LFLZOWYBk.hL3hm9n4eJe, roles: [ 'ROLE_USER' ] }
+                    admin: { password: $2a$04$CcJANTiGLfvaiWWb2IOvuue6PX4NQohsimCWjXpvMDy8sUz0uNHVC, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
-
         secured_area:
             pattern:    ^/
             anonymous: ~
             http_basic: ~
             #stateless:  false
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                default_target_path: /evento
             logout:
-                path:   /evento/evento_logout
-                target: /seminario
-                  #delete_cookies:
+                path: /logout
+                target: /evento
+                delete_cookies:
+                   a: { path: null, domain: null }
+                   b: { path: null, domain: null }
                    # admin: { path: /evento, domain: null }
 
 
     access_control:
-       # - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
-      # - { path: ^/evento, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/evento, roles: ROLE_USER }
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+       - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/seminario, roles: ROLE_USER }
+       - { path: ^/responsable, roles: ROLE_USER }
+
+
 
 

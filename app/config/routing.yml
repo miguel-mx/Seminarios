@@ -5,3 +5,12 @@ seminario:
 app:
     resource: @AppBundle/Controller/
     type:     annotation
+
+logout:
+    path:   /logout
+
+login_route:
+    path:     /login
+    defaults: { _controller: SeminarioBundle:Security:login }
+login_check:
+    path: /login_check
