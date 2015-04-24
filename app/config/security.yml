@@ -1,26 +1,24 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-            #algorithm: bcrypt
-            #cost: 12
 
-
-    role_hierarchy:
-        ROLE_USUARIO: ROLE_USER
-        ROLE_ADMIN: ROLE_USUARIO
-
-
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
 
     providers:
         in_memory:
             memory:
                 users:
-                    hugo:  { password: passxx , roles: [ 'ROLE_USUARIO' ] }
-                    admin: { password: password , roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
 
         seminario:
+                    hugo:  { password: $2a$04$hgiCgCDptrRc4YflkLdTeOmsY7DVTOx94n/1p7Tj0CXo9sSXzLJaO, roles: [ 'ROLE_USER' ] }
+                    miguel:  { password: $2a$04$QpBMKODUP6k.ylQhBuSxFu8XnzaklIN6LFLZOWYBk.hL3hm9n4eJe, roles: [ 'ROLE_USER' ] }
+                    admin: { password: $2a$04$CcJANTiGLfvaiWWb2IOvuue6PX4NQohsimCWjXpvMDy8sUz0uNHVC, roles: [ 'ROLE_ADMIN' ] }
+
+    firewalls:
+        secured_area:
             pattern:    ^/
             http_basic: ~
             logout:
@@ -32,20 +30,26 @@ security:
             anonymous: ~ #acceso usuarios anonimos
             http_basic: ~
             #stateless:  false
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                default_target_path: /evento
             logout:
-                path:   /logout
-                target: /evento
-               # invalidate_session: true
 
-                  #delete_cookies:
+                path: /logout
+                target: /evento
+                delete_cookies:
+                   a: { path: null, domain: null }
+                   b: { path: null, domain: null }
                    # admin: { path: /evento, domain: null }
 
 
     access_control:
-       # - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
-      # - { path: ^/evento, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
-       - { path: ^/seminario, roles: ROLE_ADMIN } #cualquier URL que coincida con la expresión /admin o /admin/*
+       - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/seminario, roles: ROLE_USER }
+       - { path: ^/responsable, roles: ROLE_USER }
+
 
 
 

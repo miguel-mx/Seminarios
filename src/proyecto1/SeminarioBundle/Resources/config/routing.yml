@@ -1,6 +1,3 @@
-seminario_logout:
-    path:     /logout
-
 seminario_aviso:
     resource: "@SeminarioBundle/Resources/config/routing/aviso.yml"
     prefix:   /aviso
