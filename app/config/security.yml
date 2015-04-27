@@ -5,26 +5,21 @@ security:
             algorithm: bcrypt
             cost: 12
 
+    role_hierarchy:
+        ROLE_USUARIO:   ROLE_USER
+        ROLE_ADMIN:      ROLE_USUARIO
+
+
     providers:
         in_memory:
             memory:
                 users:
-
-    firewalls:
-
-        seminario:
-                    hugo:  { password: $2a$04$hgiCgCDptrRc4YflkLdTeOmsY7DVTOx94n/1p7Tj0CXo9sSXzLJaO, roles: [ 'ROLE_USER' ] }
-                    miguel:  { password: $2a$04$QpBMKODUP6k.ylQhBuSxFu8XnzaklIN6LFLZOWYBk.hL3hm9n4eJe, roles: [ 'ROLE_USER' ] }
+                    hugo:  { password: $2a$04$hgiCgCDptrRc4YflkLdTeOmsY7DVTOx94n/1p7Tj0CXo9sSXzLJaO, roles: [ 'ROLE_USUARIO' ] }
+                    miguel:  { password: $2a$04$QpBMKODUP6k.ylQhBuSxFu8XnzaklIN6LFLZOWYBk.hL3hm9n4eJe, roles: [ 'ROLE_USUARIO' ] }
                     admin: { password: $2a$04$CcJANTiGLfvaiWWb2IOvuue6PX4NQohsimCWjXpvMDy8sUz0uNHVC, roles: [ 'ROLE_ADMIN' ] }
 
-    firewalls:
-        secured_area:
-            pattern:    ^/
-            http_basic: ~
-            logout:
-                path:   /logout
-                target: /evento
 
+    firewalls:
         secured_area:
             pattern:    ^/ #cualquier peticion entrante
             anonymous: ~ #acceso usuarios anonimos
@@ -47,8 +42,8 @@ security:
     access_control:
 
        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/seminario, roles: ROLE_USER }
-       - { path: ^/responsable, roles: ROLE_USER }
+       - { path: ^/seminario, roles: ROLE_USUARIO }
+       - { path: ^/responsable, roles: ROLE_ADMIN }
 
 
 

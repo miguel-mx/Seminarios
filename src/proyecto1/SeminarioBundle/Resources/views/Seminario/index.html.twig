@@ -1,12 +1,5 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
-{% block nav %}
 
-    <li>
-        <a href="{{ path('seminario_new') }}">
-            Crear Seminario
-        </a>
-    </li>
-{% endblock %}
 {% block body -%}
 <br>
 <div class="row">
@@ -19,9 +12,17 @@
             </div>
 
         {% endfor %}
+        <div class="row">
+            <div class="col-md-3 col-md-offset-9">
+                <a href="{{ path('seminario_new') }}" class="btn btn-primary" role="button">
+                    Crear nuevo
+                </a>
+            </div>
+        </div>
+
         <legend>Lista seminarios</legend>
         <br>
-    <table class="table table-hover">
+        <table id="myTable"  class="display" >
         <thead>
         <tr>
             <th>Id</th>
@@ -32,7 +33,7 @@
             <th>Actions</th>
         </tr>
         </thead>
-        <tbody class=".table-hover">
+        <tbody>
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('seminario_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>

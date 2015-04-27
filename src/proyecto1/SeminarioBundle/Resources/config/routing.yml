@@ -6,9 +6,6 @@ seminario_evento:
     resource: "@SeminarioBundle/Resources/config/routing/evento.yml"
     prefix:   /evento
 
-seminario_menu:
-    path:     /menu
-    defaults: { _controller: "SeminarioBundle:Default:menu" }
 seminario_responsable:
     resource: "@SeminarioBundle/Resources/config/routing/responsable.yml"
     prefix:   /responsable
@@ -16,7 +13,5 @@ seminario_responsable:
 seminario_seminario:
         resource: "@SeminarioBundle/Resources/config/routing/seminario.yml"
         prefix:   /seminario
-seminario_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: SeminarioBundle:Default:index }
+
 

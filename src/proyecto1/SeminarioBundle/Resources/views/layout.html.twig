@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/seminario/css/signin.css')}}" type="text/css">
 
 
     {% endblock %}
@@ -52,9 +53,9 @@
                 <li><a href="{{ path('seminario') }}">Seminarios</a></li>
                 <li><a href="{{ path('evento') }}">Eventos</a></li>
                 <li><a href="{{ path('responsable') }}">Responsables</a></li>
-                <li></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                {#<li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>#}
+                <li><a href="{{ path('logout') }}">Logout</a></li>
                 {% block nav %}
                 {% endblock %}
             </ul>
