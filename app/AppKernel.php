@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new proyecto1\SeminarioBundle\SeminarioBundle(),
 	    new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new BOMO\IcalBundle\BOMOIcalBundle(),
-            new CCM\InventarioBundle\InventarioBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
