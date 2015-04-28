@@ -293,10 +293,7 @@ class EventoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendar();
 
-
-
         $provider = $this->get('bomo_ical.ics_provider');
-
         $tz = $provider->createTimezone();
         $tz
             ->setTzid('America/Mexico_City')
@@ -307,11 +304,10 @@ class EventoController extends Controller
 
         $cal
             ->setName('Seminarios CCM UNAM')
-            ->setDescription('Calendario de Coloquio y Seminario CCM-UNAM Campus Morelia')
+            ->setDescription('Calendario de Coloquios y Seminarios CCM-UNAM Campus Morelia')
         ;
 
-        $datetime = new \Datetime('2015-03-23 13:00');
-        $cad='';
+        $datetime = new \Datetime('2015-04-28 13:00');
         foreach ($eventos_semana as $evento_semana) {
             $fecha= $evento_semana->getFecha();
             $hora= $evento_semana->getHora();
@@ -323,13 +319,11 @@ class EventoController extends Controller
             $comentario = $evento_semana->getComent();
             $localizacion = $evento_semana->getOrigen();
             $organizador = $evento_semana->getOrigen();
-            $cad= $cad.$nombre."<br/>".$comentario;
-
 
             $event = $cal->newEvent();
             $event
                 ->setStartDate($fechahora)
-                ->setEndDate($datetime->modify('+1 hours'))
+                ->setEndDate($fechahora->modify('+1 hours'))
                 ->setName($nombre)
                 ->setDescription($descripcion)
                 ->setComment($comentario)

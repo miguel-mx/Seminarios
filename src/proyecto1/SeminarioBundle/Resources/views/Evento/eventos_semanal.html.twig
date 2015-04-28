@@ -3,16 +3,22 @@
     <br>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
+            <div class="row">
+                <br>
+                <div class="col-md-3 col-md-offset-9">
+                    <a href="{{ path('evento_ics') }}" class="btn btn-primary" role="button">
+                        Genarar calendario
+                    </a>
+                </div>
+            </div>
             <h1><small><i class="fa fa-book"></i> Eventos semana</small></h1>
             <hr>
             {#{{ "Saturday this week" |date('d') }}#}
             {% for entity in entities %}
                 <h3>{{ entity.seminario }}<small> {{ entity.lugar }}</small></h3>
-                    {% for responsable in entity.seminario.responsables %}
-                        {#<li><a href="http://hugo.local/app_dev.php/responsable/{{ responsable.id }}/show">{{ responsable.nombre }} {{ responsable.apellidos }}</a></li>#}
-                        {#<a href="{{ path('responsable_show', { 'id': responsable.id }) }}">{{ responsable.nombre }} {{ responsable.apellidos }}</a></li>#}
-                        <h4>{{ responsable.nombre }} {{ responsable.apellidos }}</h4>
-                    {% endfor %}
+                {% for responsable in entity.seminario.responsables %}
+                    <a href="{{ path('responsable_show', { 'id': responsable.id }) }}">{{ responsable.nombre }} {{ responsable.apellidos }} </a> /
+                {% endfor %}
                 <div class="well well-lg">
 
                     <p align="center"><b>{{ entity.platica }}</b></p>
