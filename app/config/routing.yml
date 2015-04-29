@@ -1,6 +1,4 @@
-inventario:
-    resource: "@InventarioBundle/Resources/config/routing.yml"
-    prefix:   /
+
 
 seminario:
     resource: "@SeminarioBundle/Resources/config/routing.yml"

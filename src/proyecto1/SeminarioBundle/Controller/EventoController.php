@@ -67,6 +67,7 @@ class EventoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('SeminarioBundle:Evento')->findAll();
+       // $entities = $em->getRepository('SeminarioBundle:Seminario')->findAllOrderedByDate();
 
         return $this->render('SeminarioBundle:Evento:index.html.twig', array(
             'entities' => $entities,
@@ -81,6 +82,13 @@ class EventoController extends Controller
         $entity = new Evento();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+
+        $fecha = new \DateTime('now');
+        $efecha = $entity->getFecha();
+        if ( $efecha < $fecha ) {
+            throw $this->createNotFoundException('La fecha no es valida.');
+
+        }
 
         if ($form->isValid()) {
 
@@ -126,7 +134,7 @@ class EventoController extends Controller
      */
     public function newAction($id)
     {
-        $seminar= new Seminario();
+        $seminar = new Seminario();
         $em = $this->getDoctrine()->getManager();
         $seminar = $em->getRepository('SeminarioBundle:Seminario')->find($id);
         $entity = new Evento();

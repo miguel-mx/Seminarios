@@ -12,6 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class SeminarioRepository extends EntityRepository
 {
+
+    public function findAllOrderedByDate()
+    {
+        $em = $this->getEntityManager();
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e ORDER BY e.fechaCap DESC';
+        $consulta = $em->createQuery($dql);
+        return $consulta->getResult();
+    }
     public function findEventosAnteriores($seminario)
     {
         $fechaHoy= new \DateTime('today');
