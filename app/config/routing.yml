@@ -1,5 +1,3 @@
-
-
 seminario:
     resource: "@SeminarioBundle/Resources/config/routing.yml"
     prefix:   /

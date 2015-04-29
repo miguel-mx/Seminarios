@@ -18,7 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new proyecto1\SeminarioBundle\SeminarioBundle(),
-	    new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+	        new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new BOMO\IcalBundle\BOMOIcalBundle(),
         );
 
