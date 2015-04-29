@@ -9,6 +9,8 @@ class EventoControllerTest extends WebTestCase
 
     public function testCompleteScenario()
     {
+        // La tabla de Eventos no debe contener la cadena Test
+
         // Create a new client to browse the application
         $client = static::createClient();
 
@@ -19,7 +21,7 @@ class EventoControllerTest extends WebTestCase
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Guardar')->form(array(
-            'proyecto1_seminariobundle_evento[fecha]'  => '03-05-2015',
+            'proyecto1_seminariobundle_evento[fecha]'  => '15-05-2015',             // La fecha debe ser posterior, de lo contrario no se podrá editar
             'proyecto1_seminariobundle_evento[ponente]'  => 'Ponente-Test',
             'proyecto1_seminariobundle_evento[origen]'  => 'UMSNH',
             'proyecto1_seminariobundle_evento[platica]'  => 'Titulo Platica Ponente-Test',
@@ -41,13 +43,14 @@ class EventoControllerTest extends WebTestCase
 
         $form = $crawler->selectButton('Actualizar')->form(array(
             'proyecto1_seminariobundle_evento[ponente]'  => 'Ponente Edit Test',
+            'proyecto1_seminariobundle_evento[fecha]'  => '15-05-2015',             // Reescribir la fecha para que no quede en ceros error 404
             // ... other fields to fill
         ));
 
         $client->submit($form);
         $crawler = $client->followRedirect();
 
-        //$this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /Show actualizar/");
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /Show actualizar/");
         $this->assertContains('Ponente Edit Test', $client->getResponse()->getContent(), 'Missing edited name' );
 
         // Delete the entity
