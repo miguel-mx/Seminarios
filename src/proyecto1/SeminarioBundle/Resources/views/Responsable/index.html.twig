@@ -24,7 +24,7 @@
             <table id="myTable"  class="display" >
                 <thead>
                 <tr>
-                    <th>Id</th>
+
                     <th>Nombre</th>
                     <th>Apellidos</th>
                     <th>Email</th>
@@ -35,8 +35,7 @@
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td><a href="{{ path('responsable_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                        <td>{{ entity.nombre }}</td>
+                        <td><a href="{{ path('responsable_show', { 'id': entity.id }) }}">{{ entity.nombre }}</a></td>
                         <td>{{ entity.apellidos }}</td>
                         <td>{{ entity.email }}</td>
                         <td>{{ entity.institucion }}</td>

@@ -138,12 +138,12 @@ class ResponsableController extends Controller
     }
 
     /**
-    * Creates a form to edit a Responsable entity.
-    *
-    * @param Responsable $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Responsable entity.
+     *
+     * @param Responsable $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Responsable $entity)
     {
         $form = $this->createForm(new ResponsableType(), $entity, array(
@@ -230,6 +230,6 @@ class ResponsableController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Eliminar','attr' => array('class' => 'btn btn-danger'),))
             ->getForm()
-        ;
+            ;
     }
 }

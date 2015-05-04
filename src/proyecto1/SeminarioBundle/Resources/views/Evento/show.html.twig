@@ -2,68 +2,70 @@
 
 {% block body -%}
     <br>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-    {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
 
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ flashMessage }}
-        </div>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
 
-    {% endfor %}
-    <h3>Evento</h3>
+            {% endfor %}
+            <h3>Evento</h3>
 
-        <table class="table table-bordered">
-            <tbody class=".table-hover">
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Lugar</th>
-                <td>{{ entity.lugar }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{{ entity.fecha|date('Y-m-d') }}</td>
-            </tr>
-            <tr>
-                <th>Hora</th>
-                <td>{{ entity.hora|date('H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Ponente</th>
-                <td>{{ entity.ponente }}</td>
-            </tr>
-            <tr>
-                <th>Origen</th>
-                <td>{{ entity.origen }}</td>
-            </tr>
-            <tr>
-                <th>Platica</th>
-                <td>{{ entity.platica }}</td>
-            </tr>
-            <tr>
-                <th>Resumen</th>
-                <td>{{ entity.resumen }}</td>
-            </tr>
-            <tr>
-                <th>Comentario</th>
-                <td>{{ entity.coment }}</td>
-            </tr>
-            <tr>
-                <th>Fecha de Captura</th>
-                <td>{{ entity.fechaCap|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table table-bordered">
+                <tbody class=".table-hover">
+                <tr>
+                    <th>Id</th>
+                    <td>{{ entity.id }}</td>
+                </tr>
+                <tr>
+                    <th>Lugar</th>
+                    <td>{{ entity.lugar }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha</th>
+                    <td>{{ entity.fecha|date('Y-m-d') }}</td>
+                </tr>
+                <tr>
+                    <th>Hora</th>
+                    <td>{{ entity.hora|date('H:i') }}</td>
+                </tr>
+                <tr>
+                    <th>Ponente</th>
+                    <td>{{ entity.ponente }}</td>
+                </tr>
+                <tr>
+                    <th>Origen</th>
+                    <td>{{ entity.origen }}</td>
+                </tr>
+                <tr>
+                    <th>Platica</th>
+                    <td>{{ entity.platica }}</td>
+                </tr>
+                <tr>
+                    <th>Resumen</th>
+                    <td>{{ entity.resumen }}</td>
+                </tr>
+                <tr>
+                    <th>Comentario</th>
+                    <td>{{ entity.coment }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Captura</th>
+                    <td>{{ entity.fechaCap|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                </tbody>
+            </table>
 
-        <div class="row">
-            <div class="col-md-2">{{ form(delete_form) }}</div>
-            <div class="col-md-2"><a href="{{ path('evento') }}" class="btn btn-default" >Ir a lista</a></div>
-            <div class="col-md-2"><a href="{{ path('evento_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
-        </div>
+            <div class="row">
+                <div class="col-md-2"><a href="{{ path('evento') }}" class="btn btn-default" >Ir a lista</a></div>
+                {#{% if app.user and is_granted('ROLE_ADMIN') %}#}
+                    <div class="col-md-2">{{ form(delete_form) }}</div>
+                    <div class="col-md-2"><a href="{{ path('evento_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
+                {#{% endif %}#}
+            </div>
         </div>
     </div>
 {% endblock %}

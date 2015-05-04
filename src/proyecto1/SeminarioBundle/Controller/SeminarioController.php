@@ -8,6 +8,7 @@ use proyecto1\SeminarioBundle\Entity\Responsable;
 
 use proyecto1\SeminarioBundle\Entity\Seminario;
 use proyecto1\SeminarioBundle\Form\SeminarioType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Seminario controller.
@@ -120,6 +121,10 @@ class SeminarioController extends Controller
      */
     public function editAction($id)
     {
+       /* if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw  new AccessDeniedException();
+        }*/
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SeminarioBundle:Seminario')->find($id);
@@ -195,6 +200,9 @@ class SeminarioController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw  new AccessDeniedException();
+        }
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 

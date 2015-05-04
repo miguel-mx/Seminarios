@@ -31,7 +31,7 @@
                         </tr>
                         <tr>
                             <th>Hora</th>
-                            <td>{{ entity.hora |date('H:i:s') }}</td>
+                            <td>{{ entity.hora |date('H:i') }}</td>
                         </tr>
                         <tr>
                             <th>Estatus</th>
@@ -56,8 +56,11 @@
 
 
     <div class="row">
-        <div class="col-md-2">{{ form(delete_form) }}</div>
+
         <div class="col-md-2"><a href="{{ path('seminario') }}" class="btn btn-default" >Ir a lista</a></div>
+        {#{% if app.user and is_granted('ROLE_ADMIN') %}#}
+        <div class="col-md-2">{{ form(delete_form) }}</div>
         <div class="col-md-2"><a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
+        {#{% endif %}#}
     </div>
 {% endblock %}

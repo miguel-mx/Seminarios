@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use proyecto1\SeminarioBundle\Entity\Seminario;
 use proyecto1\SeminarioBundle\Entity\Evento;
 use proyecto1\SeminarioBundle\Form\EventoType;
-
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 /**
  * Evento controller.
  *
@@ -19,7 +19,6 @@ class EventoController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosAnteriores($seminario);
-        //findOneBy(array('ciudad' => $ciudad, 'fecha_publicacion' => new \DateTime('today')));
 
         if(!$entities)
         {
@@ -36,7 +35,7 @@ class EventoController extends Controller
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
         if(!$entities)
         {
-            throw $this->createNotFoundException('No se han encontrado eventos anteriores');
+            throw $this->createNotFoundException('No se han encontrado eventos');
         }
         return $this->render('SeminarioBundle:Evento:eventos_semanal.html.twig', array(
             'entities' => $entities,
@@ -45,11 +44,12 @@ class EventoController extends Controller
     }
     public function semanasigAction()
     {
+
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemanaSig();
         if(!$entities)
         {
-            throw $this->createNotFoundException('No se han encontrado eventos anteriores');
+            throw $this->createNotFoundException('No se han encontrado eventos');
         }
         return $this->render('SeminarioBundle:Evento:eventos_sig_semana.html.twig', array(
             'entities' => $entities,
@@ -178,6 +178,9 @@ class EventoController extends Controller
      */
     public function editAction($id)
     {
+        /*if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw  new AccessDeniedException();
+        }*/
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SeminarioBundle:Evento')->find($id);
@@ -258,6 +261,9 @@ class EventoController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw  new AccessDeniedException();
+        }
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 

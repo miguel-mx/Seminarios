@@ -9,6 +9,7 @@
             {#{{ "Saturday this week" |date('d') }}#}
             {% for entity in entities %}
                 <h3>{{ entity.seminario }}<small> {{ entity.lugar }}</small></h3>
+                Responsables:
                 {% for responsable in entity.seminario.responsables %}
                     <a href="{{ path('responsable_show', { 'id': responsable.id }) }}">{{ responsable.nombre }} {{ responsable.apellidos }} </a> /
                 {% endfor %}

@@ -3,13 +3,13 @@
 {# ... you will probably extends your base template, like base.html.twig #}
 
 {% block body %}
-
+    <br><br>
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData) }}</div>
     {% endif %}
 
     <form action="{{ path('login_check') }}" method="post" class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Iniciar Sesión</h2>
         {#<label for="username"  class="sr-only">Usuario:</label>#}
         <div class="input-group margin-bottom-sm">
             <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>

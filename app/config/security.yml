@@ -5,9 +5,9 @@ security:
             algorithm: bcrypt
             cost: 12
 
-    role_hierarchy:
-        ROLE_USUARIO:   ROLE_USER
-        ROLE_ADMIN:      ROLE_USUARIO
+#    role_hierarchy:
+#        ROLE_USUARIO:   ROLE_USER
+#        ROLE_ADMIN:      ROLE_USUARIO
 
 
     providers:
@@ -28,11 +28,11 @@ security:
             form_login:
                 login_path: /login
                 check_path: /login_check
-                default_target_path: /evento
+                default_target_path: /seminario
             logout:
 
                 path: /logout
-                target: /evento
+                target: /seminario
                 delete_cookies:
                    a: { path: null, domain: null }
                    b: { path: null, domain: null }

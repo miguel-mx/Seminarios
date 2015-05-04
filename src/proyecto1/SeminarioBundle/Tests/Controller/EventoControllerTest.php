@@ -21,8 +21,8 @@ class EventoControllerTest extends WebTestCase
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Guardar')->form(array(
-            'proyecto1_seminariobundle_evento[fecha]'  => '15-05-2015',             // La fecha debe ser posterior, de lo contrario no se podrá editar
-            'proyecto1_seminariobundle_evento[ponente]'  => 'Ponente-Test',
+            'proyecto1_seminariobundle_evento[fecha]'  => '20-05-2015',             // La fecha debe ser posterior, de lo contrario no se podrá editar
+            'proyecto1_seminariobundle_evento[ponente]'  => 'Ponente-Test2',
             'proyecto1_seminariobundle_evento[origen]'  => 'UMSNH',
             'proyecto1_seminariobundle_evento[platica]'  => 'Titulo Platica Ponente-Test',
         ));
@@ -35,7 +35,7 @@ class EventoControllerTest extends WebTestCase
 
         // Edit the entity
         //$crawler = $client->click($crawler->selectLink('Editar')->link());
-
+        var_dump($client->getResponse()->getContent());
         $crawler = $client->click($crawler->selectLink('Editar')->link());
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for Editar");
