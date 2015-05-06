@@ -8,8 +8,9 @@
     </li>
 {% endblock %}
 {% block body -%}
-    <br>
-
+    <br><br>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
             {% for flashMessage in app.session.flashbag.get('notice') %}
 
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -18,16 +19,14 @@
                 </div>
 
             {% endfor %}
-
+            <br>
             <legend>Lista seminarios</legend>
             {% if app.user and is_granted('ROLE_ADMIN') %}
-                <div class="row">
-                    <div class="col-md-1 col-md-offset-10">
-                        <a href="{{ path('seminario_new') }}" class="btn btn-primary" role="button">
-                            Nuevo Seminario
-                        </a>
-                    </div>
-                </div>
+                <p>
+                    <a href="{{ path('seminario_new') }}" class="btn btn-primary btn-sm" role="button">
+                        Nuevo Seminario
+                    </a>
+                </p>
             {% endif %}
             <br>
             <table id="myTable"  class="display" >
@@ -63,6 +62,8 @@
                 {% endfor %}
                 </tbody>
             </table>
+        </div>
+    </div>
 
 
 {% endblock %}

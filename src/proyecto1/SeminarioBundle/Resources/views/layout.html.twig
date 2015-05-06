@@ -28,23 +28,19 @@
 
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="{{ asset('bundles/seminario/css/signin.css')}}" type="text/css">
-        <link rel="stylesheet" href="{{ asset('bundles/seminario/css/dashboard.css')}}" type="text/css">
 
 
     {% endblock %}
 
 </head>
 <style type="text/css">
-    body {
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 14px;
-        line-height: 1.42857;
-        color: #333;
-        background-color: #FFF;
-    }
-    .nav > li > a {
-        color:#101010;
-    }
+body {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 14px;
+line-height: 1.42857;
+color: #333;
+background-color: #FFF;
+}
 
 </style>
 <body>
@@ -87,91 +83,39 @@
 </nav>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar nav-stacked">
-                <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu"><i class="fa fa-calendar"></i>&nbsp;Eventos <i class="glyphicon glyphicon-chevron-down"></i></a>
-                    <ul class="nav nav-stacked collapse in" id="userMenu">
-                        <li><a href="{{ path('eventos_semana') }}"> Eventos esta semana</a></li>
-                        <li><a href="{{ path('eventos_semanasig') }}">  Eventos proximos</a></li>
-                        <li><a href="{{ path('seminario') }}">Crear nuevo</a></li>
-                        <li><a href="{{ path('evento') }}">Lista</a></li>
+<div class="container">
 
-                    </ul>
-                </li>
-                <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"><i class="fa fa-book"></i>&nbsp; Seminarios <i class="glyphicon glyphicon-chevron-right"></i></a>
-
-                    <ul class="nav nav-stacked collapse in" id="menu2">
-                        <li><a href="{{ path('seminario') }}">Lista</a></li>
-                        <li><a href="{{ path('seminario_new') }}"> Crear nuevo</a></li>
-                    </ul>
-                </li>
-                {% if app.user and is_granted('ROLE_ADMIN') %}
-                <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu3"><i class="fa fa-users"></i>&nbsp;Responsables <i class="glyphicon glyphicon-chevron-right"></i></a>
-                    <ul class="nav nav-stacked collapse in" id="menu3">
-                        <li><a href="{{ path('responsable') }}">Lista</a></li>
-                        <li><a href="{{ path('responsable_new') }}"> Crear nuevo</a></li>
-                    </ul>
-                </li>
-                {% endif %}
-
-            </ul>
-
-
+    {% block body %}
+        <div class="starter-template">
+            <h1>Bootstrap starter template</h1>
+            <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
         </div>
-
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            {% block body %}
-                <div class="starter-template">
-                    <h1>Bootstrap starter template</h1>
-                    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-                </div>
-            {% endblock %}
-        </div>
-    </div>
-
-
-
     {% endblock %}
 
 
-    {% block js %}
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script src="//select2.github.io/select2/select2-3.4.2/select2.js"></script>
-        <script type="text/javascript">
-            $('.select2').select2();
-        </script>
-        <script src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $('#myTable').DataTable();
-            });
-        </script>
-
-        <script type='text/javascript'>
-
-            $(document).ready(function() {
-
-                $(".alert").addClass("in").fadeOut(4500);
-
-                /* swap open/close side menu icons */
-                $('[data-toggle=collapse]').click(function(){
-                    // toggle icon
-                    $(this).find("i").toggleClass("glyphicon-chevron-right glyphicon-chevron-down");
-                });
-
-            });
-
-        </script>
+{% endblock %}
 
 
-    {% endblock %}
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+{% block js %}
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//select2.github.io/select2/select2-3.4.2/select2.js"></script>
+    <script type="text/javascript">
+        $('.select2').select2();
+    </script>
+    <script src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#myTable').DataTable();
+        });
+    </script>
+
+
+{% endblock %}
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 </body>
 </html>

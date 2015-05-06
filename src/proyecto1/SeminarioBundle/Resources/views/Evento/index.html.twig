@@ -1,9 +1,9 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
 
 {% block body -%}
-    <br>
-    {#<div class="row">
-        <div class="col-md-8 col-md-offset-2">#}
+    <br><br>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
             {% for flashMessage in app.session.flashbag.get('notice') %}
 
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -12,15 +12,21 @@
                 </div>
 
             {% endfor %}
-
+            <br>
             <legend><i class="fa fa-th-list"></i>&nbsp;&nbsp;Seminairo y Coloquios CCM</legend>
-            <div class="row">
-                <div class="col-md-3 col-md-offset-9">
-                    <a href="{{ path('seminario') }}" class="btn btn-primary" role="button">
+
+                    <p>
+                    <a href="{{ path('seminario') }}" class="btn btn-primary btn-sm" role="button">
                         Nuevo Evento
                     </a>
-                </div>
-            </div>
+                    <a href="{{ path('eventos_semana') }}" class="btn btn-default btn-sm" role="button">
+                        Eventos semana
+                    </a>
+                        <a href="{{ path('eventos_semanasig') }}" class="btn btn-default btn-sm" role="button">
+                            Eventos proximos
+                        </a>
+                    </p>
+
             <br>
 
             <table id="myTable"  class="display" >
@@ -67,6 +73,6 @@
                 {% endfor %}
                 </tbody>
             </table>
-       {# </div>
-    </div>#}
+        </div>
+    </div>
 {% endblock %}
