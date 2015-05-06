@@ -53,8 +53,12 @@
                     <td>{{ entity.coment }}</td>
                 </tr>
                 <tr>
-                    <th>Fecha de Captura</th>
+                    <th>Creado</th>
                     <td>{{ entity.fechaCap|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Modificado</th>
+                    <td>{{ entity.modified |date('Y-m-d H:i:s') }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -62,8 +66,8 @@
             <div class="row">
                 <div class="col-md-2"><a href="{{ path('evento') }}" class="btn btn-default" >Ir a lista</a></div>
                 {#{% if app.user and is_granted('ROLE_ADMIN') %}#}
-                    <div class="col-md-2">{{ form(delete_form) }}</div>
-                    <div class="col-md-2"><a href="{{ path('evento_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
+                <div class="col-md-2">{{ form(delete_form) }}</div>
+                <div class="col-md-2"><a href="{{ path('evento_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
                 {#{% endif %}#}
             </div>
         </div>

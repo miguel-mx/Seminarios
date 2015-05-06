@@ -1,6 +1,6 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
 {% block body -%}
-    <br>
+    <br><br>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -11,6 +11,8 @@
                 </div>
 
             {% endfor %}
+            <br>
+            <legend><i class="fa fa-users"></i>&nbsp;Lista responsables</legend>
             <div class="row">
                 <div class="col-md-3 col-md-offset-9">
                     <a href="{{ path('responsable_new') }}" class="btn btn-primary" role="button">
@@ -18,8 +20,6 @@
                     </a>
                 </div>
             </div>
-
-            <legend>Lista responsables</legend>
             <br>
             <table id="myTable"  class="display" >
                 <thead>
@@ -40,14 +40,9 @@
                         <td>{{ entity.email }}</td>
                         <td>{{ entity.institucion }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('responsable_show', { 'id': entity.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('responsable_edit', { 'id': entity.id }) }}">edit</a>
-                                </li>
-                            </ul>
+
+                            <a href="{{ path('responsable_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i>&nbsp;editar</a>
+
                         </td>
                     </tr>
                 {% endfor %}

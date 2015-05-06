@@ -71,6 +71,13 @@ class SeminarioRepository extends EntityRepository
         $consulta->setParameters(array('lunes'=>$lunes,'viernes'=>$viernes));
         return $consulta->getResult();
     }
+    public function findEventosToCalendarAll()
+    {
+        $em = $this->getEntityManager();
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e';
+        $consulta = $em->createQuery($dql);
+        return $consulta->getResult();
+    }
 
 }
 

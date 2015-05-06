@@ -141,6 +141,11 @@ class EventoController extends Controller
         $entity->setLugar($seminar->getLugar());
         $entity->setHora($seminar->getHora());
         $entity->setSeminario($seminar);
+        if(!$seminar->getEstatus())
+        {
+            throw $this->createNotFoundException('Seminario Inactivo no se puede crear evento');
+        }
+
 
         $form   = $this->createCreateForm($entity);
 
@@ -178,9 +183,9 @@ class EventoController extends Controller
      */
     public function editAction($id)
     {
-        /*if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw  new AccessDeniedException();
-        }*/
+        }
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SeminarioBundle:Evento')->find($id);
@@ -305,7 +310,8 @@ class EventoController extends Controller
     public function icsAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendar();
+        //$eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendar();
+        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendarAll();
 
         $provider = $this->get('bomo_ical.ics_provider');
         $tz = $provider->createTimezone();
