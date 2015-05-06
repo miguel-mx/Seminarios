@@ -1,16 +1,8 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
 {% block body -%}
     <br>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="row">
-                <br>
-                <div class="col-md-3 col-md-offset-9">
-                    <a href="{{ path('evento_ics') }}" class="btn btn-primary" role="button">
-                        Genarar calendario
-                    </a>
-                </div>
-            </div>
+
+
             <h1><small><i class="fa fa-book"></i> Eventos semana</small></h1>
             <hr>
             {#{{ "Saturday this week" |date('d') }}#}
@@ -37,8 +29,5 @@
             <li>
                 <a href="{{ path('evento_mail') }}">Enviar por correo</a>
             </li>
-
-        </div>
-    </div>
 
 {% endblock %}

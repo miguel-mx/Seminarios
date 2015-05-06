@@ -1,70 +1,60 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
 
 {% block body -%}
-<br><br>
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        {% for flashMessage in app.session.flashbag.get('notice') %}
+    <br>
 
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {{ flashMessage }}
-            </div>
+            {% for flashMessage in app.session.flashbag.get('notice') %}
 
-        {% endfor %}
-        {#{% if app.user and is_granted('ROLE_ADMIN') %}#}
-        <div class="row">
-            <div class="col-md-3 col-md-offset-9">
-                <a href="{{ path('seminario_new') }}" class="btn btn-primary" role="button">
-                    Nuevo Seminario
-                </a>
-            </div>
-        </div>
-        {#{% endif %}#}
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
 
-        <legend>Lista seminarios</legend>
-        <br>
-        <table id="myTable"  class="display" >
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Lugar</th>
-            <th>Hora</th>
-            <th>Estatus</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
+            {% endfor %}
 
-                <td><a href=" {{ path('seminario_show', { 'id': entity.id}) }}">{{ entity.nombre }}</a></td>
-                <td>{{ entity.lugar }}</td>
-                <td>{% if entity.hora %}{{ entity.hora | date('H:i:s') }}{% endif %}</td>
-                <td>{{ entity.estatus }}</td>
-                <td>
-                    <ul>
-                        {#<li>
-                            <a href="{{ path('seminario_show', { 'id': entity.id }) }}">show</a>
-                        </li>#}
-                        {% if app.user and is_granted('ROLE_ADMIN') %}
-                        <li>
+            <legend>Lista seminarios</legend>
+            {% if app.user and is_granted('ROLE_ADMIN') %}
+                <div class="row">
+                    <div class="col-md-1 col-md-offset-10">
+                        <a href="{{ path('seminario_new') }}" class="btn btn-primary" role="button">
+                            Nuevo Seminario
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+            <br>
+            <table id="myTable"  class="display" >
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Lugar</th>
+                    <th>Hora</th>
+                    <th>Estatus</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
 
-                            <a href="{{ path('seminario_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil fa-fw"></i>Editar</a>
+                        <td><a href=" {{ path('seminario_show', { 'id': entity.id}) }}">{{ entity.nombre }}</a></td>
+                        <td>{{ entity.lugar }}</td>
+                        <td>{% if entity.hora %}{{ entity.hora | date('H:i:s') }}{% endif %}</td>
+                        <td>{% if entity.estatus %} Activo {% else %} Inactivo {% endif %}</td>
+                        <td>
 
-                        </li>
-                        {% endif %}
-                        <li>
-                             <a href="{{ path('evento_new', { 'id': entity.id }) }}">Crear Evento</a>
+                            {% if app.user and is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i>&nbsp;editar</a> |
+                            {% endif %}
+
+                            <a href="{{ path('evento_new', { 'id': entity.id }) }}" class="btn btn-default btn-xs">Crear Evento</a>
                             {# <a href="http://localhost/sd/app_dev.php/evento/{{ entity.id }}/new">Crear Evento</a> #}
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-    </div>
+
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
 {% endblock %}

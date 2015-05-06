@@ -2,77 +2,71 @@
 
 {% block body -%}
     <br>
-    {% for flashMessage in app.session.flashbag.get('notice') %}
+    {#<div class="row">
+        <div class="col-md-8 col-md-offset-2">#}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
 
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ flashMessage }}
-        </div>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
 
-    {% endfor %}
-    <br>
-    <div class="row">
-        <div class="col-md-3 col-md-offset-9">
-            <a href="{{ path('seminario') }}" class="btn btn-primary" role="button">
-                Nuevo Evento
-            </a>
-        </div>
-    </div>
+            {% endfor %}
 
-    <legend>Seminairo y Coloquios CCM</legend>
-    <br>
+            <legend><i class="fa fa-th-list"></i>&nbsp;&nbsp;Seminairo y Coloquios CCM</legend>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-9">
+                    <a href="{{ path('seminario') }}" class="btn btn-primary" role="button">
+                        Nuevo Evento
+                    </a>
+                </div>
+            </div>
+            <br>
 
-    <table id="myTable"  class="display" >
-        <thead>
-        <tr>
-            {#<th>Id</th>#}
-            <th>Seminario</th>
-            <th>Lugar</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Ponente</th>
-            {#<th>Origen</th>
-            <th>Platica</th>
-            <th>Resumen</th>
-            <th>Comentario</th>#}
-            <th>Fecha de captura</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                {#<td><a href="{{ path('evento_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
-                <td><a href="{{ path('evento_show', { 'id': entity.id }) }}">{{ entity.seminario }}</a></td>
-                <td>{{ entity.lugar }}</td>
-                <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if entity.hora %}{{ entity.hora|date('H:i:s') }}{% endif %}</td>
-                <td>{{ entity.ponente }}</td>
-                {#<td>{{ entity.origen }}</td>
-                <td>{{ entity.platica }}</td>
-                <td>{{ entity.resumen | wordwrap(20) | nl2br }}</td>
-                <td>{{ entity.coment }}</td>#}
-                <td>{% if entity.fechaCap %}{{ entity.fechaCap|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('evento_show', { 'id': entity.id }) }}">show</a>
-                        </li>
-                        {% if app.user and is_granted('ROLE_ADMIN') %}
-                        <li>
-                            <a href="{{ path('evento_edit', { 'id': entity.id }) }}">editar</a>
-                        </li>
-                        {% endif %}
-                        <li>
-                            <a href="{{ path('eventos_anteriores',{'seminario': entity.seminario.id}) }}">
-                                Eventos anteriores
-                            </a>
-                        </li>
+            <table id="myTable"  class="display" >
+                <thead>
+                <tr>
+                    {#<th>Id</th>#}
+                    <th>Seminario</th>
+                    <th>Lugar</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Ponente</th>
+                    {#<th>Origen</th>
+                    <th>Platica</th>
+                    <th>Resumen</th>
+                    <th>Comentario</th>
+                    <th>Fecha de captura</th>#}
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        {#<td><a href="{{ path('evento_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                        <td><a href="{{ path('evento_show', { 'id': entity.id }) }}">{{ entity.seminario }}</a></td>
+                        <td>{{ entity.lugar }}</td>
+                        <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif %}</td>
+                        <td>{% if entity.hora %}{{ entity.hora|date('H:i:s') }}{% endif %}</td>
+                        <td>{{ entity.ponente }}</td>
+                        {#<td>{{ entity.origen }}</td>
+                        <td>{{ entity.platica }}</td>
+                        <td>{{ entity.resumen | wordwrap(20) | nl2br }}</td>
+                        <td>{{ entity.coment }}</td>#}
+                        {#<td>{% if entity.fechaCap %}{{ entity.fechaCap|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                        <td>
 
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+
+                                {% if app.user and is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('evento_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i>&nbsp;editar</a> |
+                                {% endif %}
+                                    <a href="{{ path('eventos_anteriores',{'seminario': entity.seminario.id}) }}" class="btn btn-default btn-xs">Eventos anteriores</a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+       {# </div>
+    </div>#}
 {% endblock %}

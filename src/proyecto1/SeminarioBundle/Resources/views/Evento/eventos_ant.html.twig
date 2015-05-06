@@ -3,14 +3,14 @@
     <br>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1><small><i class="fa fa-book"></i> Eventos anteriores</small></h1>
+            <h1><small><i class="fa fa-list"></i>&nbsp;&nbsp;Eventos anteriores</small></h1>
             <hr>
             {#{{ "Saturday this week" |date('d') }}#}
             {% for entity in entities %}
-                <h3>{{ entity.seminario }}<small> {{ entity.lugar }}</small></h3>
+                <h4>{{ entity.seminario }}<small> {{ entity.lugar }}</small></h4>
                 Responsables:
                 {% for responsable in entity.seminario.responsables %}
-                    <a href="{{ path('responsable_show', { 'id': responsable.id }) }}">{{ responsable.nombre }} {{ responsable.apellidos }} </a> /
+                    <a href="{{ path('responsable_show', { 'id': responsable.id }) }}" ><i class="fa fa-user"></i>&nbsp;{{ responsable.nombre }} {{ responsable.apellidos }} </a> |
                 {% endfor %}
 
                 <div class="well well-lg">

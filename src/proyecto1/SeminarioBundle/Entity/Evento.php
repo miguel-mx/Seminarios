@@ -14,7 +14,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="proyecto1\SeminarioBundle\Entity\SeminarioRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
+
 class Evento
 {
     /**
@@ -95,12 +97,51 @@ class Evento
      */
     private $fechaCap;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $modified;
+
     public function __construct()
     {
-        $this->fechaCap = new \DateTime();
+       // $this->fechaCap = new \DateTime();
     }
 
 
+    /**
+ * @ORM\PrePersist
+ */
+    public function prePersist()
+    {
+        $this->fechaCap = new \DateTime();
+        $this->setModified(new \DateTime());
+    }
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setModified(new \DateTime());
+    }
+
+    /**
+     * Set modified
+     *
+     * @param datetime $modified
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+    }
+    /**
+     * Get modified
+     *
+     * @return string
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
 
     /**
      * Get id

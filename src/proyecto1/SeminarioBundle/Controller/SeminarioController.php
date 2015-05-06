@@ -121,9 +121,9 @@ class SeminarioController extends Controller
      */
     public function editAction($id)
     {
-       /* if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
             throw  new AccessDeniedException();
-        }*/
+        }
 
         $em = $this->getDoctrine()->getManager();
 

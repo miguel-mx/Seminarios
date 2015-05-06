@@ -57,11 +57,13 @@ class Seminario
      * @ORM\ManyToMany(targetEntity="Responsable", inversedBy="seminarios")
      * @ORM\JoinTable(name="seminarios_responsables")
      **/
-    private $responsables; 
+    private $responsables;
+
 
     public function __construct() {
         $this->responsables = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     public function addResponsable(Responsable $responsable)
     {
@@ -197,4 +199,5 @@ class Seminario
     {
         return $this->responsables;
     }
+
 }

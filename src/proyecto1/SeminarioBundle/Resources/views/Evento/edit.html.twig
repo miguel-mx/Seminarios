@@ -110,6 +110,8 @@
         <div class="row">
             <div class="col-md-2">{{ form(delete_form) }}</div>
             <div class="col-md-2"><a href="{{ path('evento') }}" class="btn btn-default" >Ir a lista</a></div>
+            <div class="col-md-2"> <a href="{{ path('evento_show', { 'id': entity.id }) }}" class="btn btn-default" >Mostrar</a></div>
+
         </div>
 
         <br>
