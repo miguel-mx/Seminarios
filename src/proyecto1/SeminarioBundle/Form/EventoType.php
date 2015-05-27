@@ -16,8 +16,7 @@ class EventoType extends AbstractType
     {
         $builder
             ->add('seminario')
-            ->add('lugar','text',array(
-                'required'=>false))
+            ->add('lugar','text',array('required'=>false))
             ->add('fecha', 'date', array('input' => 'datetime','widget' => 'single_text','format' => 'dd-MM-yyyy',))
             ->add('hora')
             ->add('ponente')

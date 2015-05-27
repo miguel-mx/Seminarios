@@ -19,7 +19,6 @@ class ResponsableType extends AbstractType
             ->add('apellidos')
             ->add('email')
             ->add('institucion')
-            //->add('seminarios')
         ;
     }
     
