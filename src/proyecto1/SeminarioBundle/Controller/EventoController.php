@@ -311,7 +311,6 @@ class EventoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         //$eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendar();
-        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendarAll();
 
         $provider = $this->get('bomo_ical.ics_provider');
         $tz = $provider->createTimezone();
@@ -385,7 +384,7 @@ class EventoController extends Controller
         }
         $mailer = $this->get('mailer');
         $message = $mailer->createMessage()
-            ->setSubject('Seminarios de la semana Centro de Ciencias Matemáticas XD')
+            ->setSubject('Seminarios de la semana Centro de Ciencias Matemáticas')
             ->setFrom('usuariosccm15@gmail.com')
             ->setTo('abner1991@outlook.es'
                # 'abner1991@outlook.es'=> 'A name'

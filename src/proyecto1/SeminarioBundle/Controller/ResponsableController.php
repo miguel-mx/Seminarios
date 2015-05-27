@@ -82,6 +82,10 @@ class ResponsableController extends Controller
      */
     public function newAction()
     {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw  new AccessDeniedException();
+        }
+
         $entity = new Responsable();
         $form   = $this->createCreateForm($entity);
 
@@ -119,6 +123,10 @@ class ResponsableController extends Controller
      */
     public function editAction($id)
     {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw  new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SeminarioBundle:Responsable')->find($id);
@@ -138,12 +146,12 @@ class ResponsableController extends Controller
     }
 
     /**
-     * Creates a form to edit a Responsable entity.
-     *
-     * @param Responsable $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
+    * Creates a form to edit a Responsable entity.
+    *
+    * @param Responsable $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
     private function createEditForm(Responsable $entity)
     {
         $form = $this->createForm(new ResponsableType(), $entity, array(
@@ -194,6 +202,10 @@ class ResponsableController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw  new AccessDeniedException();
+        }
+
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -230,6 +242,6 @@ class ResponsableController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Eliminar','attr' => array('class' => 'btn btn-danger'),))
             ->getForm()
-            ;
+        ;
     }
 }

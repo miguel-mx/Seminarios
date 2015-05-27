@@ -84,6 +84,10 @@ class SeminarioController extends Controller
      */
     public function newAction()
     {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw  new AccessDeniedException();
+        }
+
         $entity = new Seminario();
         $form   = $this->createCreateForm($entity);
 

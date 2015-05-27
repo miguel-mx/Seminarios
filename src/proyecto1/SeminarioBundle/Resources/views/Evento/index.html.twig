@@ -3,7 +3,7 @@
 {% block body -%}
     <br><br>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             {% for flashMessage in app.session.flashbag.get('notice') %}
 
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -13,7 +13,7 @@
 
             {% endfor %}
             <br>
-            <legend><i class="fa fa-th-list"></i>&nbsp;&nbsp;Seminairo y Coloquios CCM</legend>
+            <legend><i class="fa fa-th-list"></i> Coloquio y Seminarios CCM</legend>
 
                     <p>
                     <a href="{{ path('seminario') }}" class="btn btn-primary btn-sm" role="button">

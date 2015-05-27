@@ -7,7 +7,7 @@ eventos_semana:
     defaults: { _controller: "SeminarioBundle:Evento:semana" }
 
 eventos_semanasig:
-    path:     /semanasiguiente
+    path:     /semana-siguiente
     defaults: { _controller: "SeminarioBundle:Evento:semanasig" }
 eventos_anteriores:
     path:     /{seminario}/anteriores

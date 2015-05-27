@@ -49,19 +49,23 @@
                     {{ form_widget(edit_form.responsables,{'attr':{'class':'select2 form-control'}}) }}
                 </div>
                 <div class="form-group">
-                    {{ form_widget(edit_form.submit,{'attr':{'class':'btn btn-default'}}) }}
+                    <i class="fa fa-refresh"></i>
+                    {{ form_widget(edit_form.submit,{'label':'Actualizar '}) }}
                 </div>
-
 
                 {{ form_end(edit_form) }}
             </fieldset>
 
-
-            <div class="row">
-                <div class="col-md-2">{{ form(delete_form) }}</div>
-                <div class="col-md-2"><a href="{{ path('seminario') }}" class="btn btn-default" >Ir a lista</a></div>
-            </div>
-
-             </div>
+            <ul class="record_actions">
+                <li>
+                    <a href="{{ path('seminario') }}">
+                        Regresar lista
+                    </a>
+                </li>
+                <li>{{ form(delete_form) }}</li>
+            </ul>
+            <a class="btn btn-danger" href="#">
+                <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+        </div>
     </div>
 {% endblock %}

@@ -15,12 +15,8 @@
     <h3>Seminario</h3>
         <br>
 
-                <table class="table table-bordered">
+                <table class="table">
                     <tbody class=".table-hover">
-                        <tr>
-                            <th>Id</th>
-                            <td>{{ entity.id }}</td>
-                        </tr>
                         <tr>
                             <th>Nombre</th>
                             <td>{{ entity.nombre }}</td>
@@ -31,11 +27,7 @@
                         </tr>
                         <tr>
                             <th>Hora</th>
-                            <td>{{ entity.hora |date('H:i') }}</td>
-                        </tr>
-                        <tr>
-                            <th>Estatus</th>
-                            <td>{{ entity.estatus }}</td>
+                            <td>{{ entity.hora |date('H:i:s') }}</td>
                         </tr>
                         <tr>
                             <th>Responsables</th>
@@ -56,11 +48,13 @@
 
 
     <div class="row">
+        <div class="btn-group" role="group">
 
-        <div class="col-md-2"><a href="{{ path('seminario') }}" class="btn btn-default" >Ir a lista</a></div>
-        {#{% if app.user and is_granted('ROLE_ADMIN') %}#}
-        <div class="col-md-2">{{ form(delete_form) }}</div>
-        <div class="col-md-2"><a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
-        {#{% endif %}#}
+            {% if is_granted('ROLE_ADMIN') %}
+                {{ form(delete_form) }}
+                <a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-success ">Editar </a>
+            {% endif %}
+            <a href="{{ path('seminario') }}" class="btn btn-default" >Lista seminarios</a>
+        </div>
     </div>
 {% endblock %}

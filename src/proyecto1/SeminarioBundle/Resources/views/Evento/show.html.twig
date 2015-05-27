@@ -14,12 +14,8 @@
             {% endfor %}
             <h3>Evento</h3>
 
-            <table class="table table-bordered">
+            <table class="table">
                 <tbody class=".table-hover">
-                <tr>
-                    <th>Id</th>
-                    <td>{{ entity.id }}</td>
-                </tr>
                 <tr>
                     <th>Lugar</th>
                     <td>{{ entity.lugar }}</td>
@@ -64,11 +60,11 @@
             </table>
 
             <div class="row">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="col-md-2">{{ form(delete_form) }}</div>
+                    <div class="col-md-2"><a href="{{ path('evento_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
+                {% endif %}
                 <div class="col-md-2"><a href="{{ path('evento') }}" class="btn btn-default" >Ir a lista</a></div>
-                {#{% if app.user and is_granted('ROLE_ADMIN') %}#}
-                <div class="col-md-2">{{ form(delete_form) }}</div>
-                <div class="col-md-2"><a href="{{ path('evento_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
-                {#{% endif %}#}
             </div>
         </div>
     </div>
