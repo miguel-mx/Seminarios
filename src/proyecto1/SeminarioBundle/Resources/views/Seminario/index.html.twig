@@ -1,9 +1,16 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
+{% block nav %}
 
+    <li>
+        <a href="{{ path('seminario_new') }}">
+            Crear Seminario
+        </a>
+    </li>
+{% endblock %}
 {% block body -%}
     <br><br>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             {% for flashMessage in app.session.flashbag.get('notice') %}
 
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -13,7 +20,7 @@
 
             {% endfor %}
             <br>
-            <legend>Lista seminarios</legend>
+            <legend>Seminarios CCM</legend>
             {% if app.user and is_granted('ROLE_ADMIN') %}
                 <p>
                     <a href="{{ path('seminario_new') }}" class="btn btn-primary btn-sm" role="button">
@@ -57,5 +64,6 @@
             </table>
         </div>
     </div>
+
 
 {% endblock %}

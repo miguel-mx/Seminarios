@@ -72,12 +72,10 @@ background-color: #FFF;
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li><a href="{{ path('logout') }}"><i class="fa fa-unlock"></i>&nbsp;Logout</a></li>
                     <li><a><i class="glyphicon glyphicon-user"></i>&nbsp;{{ app.user.username }}</a></li>
-
                 {% endif %}
                 {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li><a href="{{ path('login_route') }}"><i class="fa fa-lock"></i>&nbsp;Login</a></li>
                 {% endif %}
-
 
             </ul>
         </div><!--/.nav-collapse -->
