@@ -40,17 +40,10 @@
 
 
             </fieldset>
-            <div>
-                {{ form_label(form.submit,'Guardar') }}
-                {{ form_widget(form.submit,{'label':'Guardar'},{'attr':{'class':'btn btn-default'}}) }}
-
-            </div>
+            <p class="text-right">
+                {{ form_widget(form.submit) }}
+            </p>
             {{ form_end(form) }}
-                <br>
-
-                    <a href="{{ path('responsable') }} " class="btn btn-default">
-                        Ir a lista
-                    </a>
 
         </div>
     </div>

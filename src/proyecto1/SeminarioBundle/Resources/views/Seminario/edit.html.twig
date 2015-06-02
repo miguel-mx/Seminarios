@@ -2,6 +2,7 @@
 
 {% block body -%}
     <br>
+    <br>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -48,24 +49,18 @@
                     {{ form_errors(edit_form.responsables) }}
                     {{ form_widget(edit_form.responsables,{'attr':{'class':'select2 form-control'}}) }}
                 </div>
-                <div class="form-group">
-                    <i class="fa fa-refresh"></i>
-                    {{ form_widget(edit_form.submit,{'label':'Actualizar '}) }}
-                </div>
 
-                {{ form_end(edit_form) }}
             </fieldset>
+            <hr>
 
-            <ul class="record_actions">
-                <li>
-                    <a href="{{ path('seminario') }}">
-                        Regresar lista
-                    </a>
-                </li>
+            <ul class="list-inline">
+                <li>{{ form_widget(edit_form.submit,{'label':'Actualizar','attr':{'class':'btn btn-success'}}) }}</li>{{ form_end(edit_form) }}{# Agregado aqui por al final de ul no funciona #}
                 <li>{{ form(delete_form) }}</li>
+                <li><a href="{{ path('seminario') }}" class="btn btn-primary" >Ir a lista</a></li>
+                <li><a href="{{ path('seminario_show', { 'id': entity.id }) }}" class="btn btn-default" >Mostrar</a></li>
             </ul>
-            <a class="btn btn-danger" href="#">
-                <i class="fa fa-trash-o fa-lg"></i> Delete</a>
+
+
         </div>
     </div>
 {% endblock %}

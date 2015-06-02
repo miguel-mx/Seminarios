@@ -42,7 +42,7 @@ class ResponsableController extends Controller
         if ($form->isValid()) {
             $request->getSession()->getFlashBag()->add(
                 'notice',
-                'Your changes were saved!'
+                'Responsable creado exitosamente!'
             );
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -71,7 +71,7 @@ class ResponsableController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear','attr' => array('class' => 'btn btn-success'),));
 
         return $form;
     }

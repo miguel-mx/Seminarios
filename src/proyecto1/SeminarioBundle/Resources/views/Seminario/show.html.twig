@@ -46,15 +46,13 @@
                     </tbody>
                 </table>
 
+    <ul class="list-inline">
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>{{ form(delete_form) }}</li>
+            <li><a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></li>
+        {% endif %}
+        <li><a href="{{ path('seminario') }}" class="btn btn-primary" >Ir a lista</a></li>
+    </ul>
 
-    <div class="row">
-        <div class="btn-group" role="group">
 
-            {% if is_granted('ROLE_ADMIN') %}
-                {{ form(delete_form) }}
-                <a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-success ">Editar </a>
-            {% endif %}
-            <a href="{{ path('seminario') }}" class="btn btn-default" >Lista seminarios</a>
-        </div>
-    </div>
 {% endblock %}

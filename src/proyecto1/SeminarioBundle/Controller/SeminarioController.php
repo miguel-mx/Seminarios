@@ -44,7 +44,7 @@ class SeminarioController extends Controller
         if ($form->isValid()) {
             $request->getSession()->getFlashBag()->add(
                 'notice',
-                'Your changes were saved!'
+                'Seminario creado exitosamente!'
             );
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -73,7 +73,7 @@ class SeminarioController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear','attr' => array('class' => 'btn btn-success'),));
 
         return $form;
     }

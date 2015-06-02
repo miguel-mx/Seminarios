@@ -94,7 +94,7 @@ class EventoController extends Controller
 
             $request->getSession()->getFlashBag()->add(
                 'notice',
-                'Your changes were saved!'
+                'Evento creado exitosamente!'
             );
 
             $em = $this->getDoctrine()->getManager();
@@ -123,7 +123,7 @@ class EventoController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear','attr' => array('class' => 'btn btn-success'),));
 
         return $form;
     }
@@ -310,7 +310,7 @@ class EventoController extends Controller
     public function icsAction()
     {
         $em = $this->getDoctrine()->getManager();
-        //$eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendar();
+        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendar();
 
         $provider = $this->get('bomo_ical.ics_provider');
         $tz = $provider->createTimezone();
@@ -362,54 +362,6 @@ class EventoController extends Controller
             )
         );
     }
-    public function mailAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
-        //$hola = $eventos_semana[0]->getPlatica();
-        $cad='';
-        foreach ($eventos_semana as $evento_semana) {
-            $fecha = $evento_semana->getFecha();
-            $hora = $evento_semana->getHora();
-
-            $fechahora = new \DateTime($fecha->format('Y-m-d') . ' ' . $hora->format('H:i:s'));
-
-            $nombre = $evento_semana->getSeminario()->getResponsables();
-            $res= $nombre[0];
-            $descripcion = $evento_semana->getPlatica();
-            $comentario = $evento_semana->getResumen();
-            $localizacion = $evento_semana->getOrigen();
-            $organizador = $evento_semana->getOrigen();
-            $cad = $res . "\n" . $comentario."\n".$cad."\n";
-        }
-        $mailer = $this->get('mailer');
-        $message = $mailer->createMessage()
-            ->setSubject('Seminarios de la semana Centro de Ciencias Matemáticas')
-            ->setFrom('usuariosccm15@gmail.com')
-            ->setTo('abner1991@outlook.es'
-               # 'abner1991@outlook.es'=> 'A name'
-            )
-            ->setBody($cad)
-            //->addPart($hola.'<br>'.'<q>Here is the message itself</q>', 'text/html')
-            /*
-             * If you also want to include a plaintext version of the message
-            ->addPart(
-                $this->renderView(
-                    'Emails/registration.txt.twig',
-                    array('name' => $name)
-                ),
-                'text/plain'
-            )
-            */
-        ;
-        $mailer->send($message);
-        //$request->getSession()->getFlashBag()->add('success', 'Your email has been sent! Thanks!');
-        //return $this->render('SeminarioBundle:Evento:otra.html.twig');
-        //return $this->redirectToRoute('eventos_semana');
-        return $this->redirect($this->generateUrl('eventos_semana'));
-
-    }
-
 
 }
 

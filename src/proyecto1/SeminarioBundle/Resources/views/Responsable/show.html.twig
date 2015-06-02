@@ -49,11 +49,13 @@
                 </tbody>
             </table>
 
-            <div class="row">
-                <div class="col-md-2">{{ form(delete_form) }}</div>
-                <div class="col-md-2"><a href="{{ path('responsable') }}" class="btn btn-default" >Ir a lista</a></div>
-                <div class="col-md-2"><a href="{{ path('responsable_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></div>
-            </div>
+            <ul class="list-inline">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>{{ form(delete_form) }}</li>
+                    <li><a href="{{ path('responsable_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></li>
+                {% endif %}
+                <li><a href="{{ path('responsable') }}" class="btn btn-primary" >Ir a lista</a></li>
+            </ul>
         </div>
     </div>
 {% endblock %}

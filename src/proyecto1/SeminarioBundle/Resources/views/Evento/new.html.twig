@@ -55,6 +55,17 @@
                 {{ form_widget(form.hora) }}
 
             </div>
+            {#<div class="form-group">#}
+                {#{{ form_label(form.hora,'Hora:') }}#}
+                {#{{ form_errors(form.hora) }}#}
+            {#<div ng-controller="TimepickerDemoCtrl">#}
+
+                {#<timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>#}
+
+            {#</div>#}
+                {#{% do form.fecha.setRendered %}#}
+            {#</div>#}
+
             <div class="form-group">
 
                 {{ form_label(form.ponente,'Ponente:') }}
@@ -92,12 +103,11 @@
             </div>
             <br>
         </fieldset>
-        <div>
 
-            {#{{ form_label(form.submit,'Guardar') }}#}
-            {{ form_widget(form.submit,{'label':'Guardar'},{'attr':{'class':'btn btn-success'}}) }}
-            <br>
-        </div>
+        <p class="text-right">
+
+            {{ form_widget(form.submit) }}
+        </p>
         {{ form_end(form) }}
 
         {#<a class="btn btn-default" href="{{ path('evento') }}">Ver seminarios</a>#}

@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class SeminarioRepository extends EntityRepository
 {
 
+    //Ordenar por fecha no funciona por la datatable!! orden predefinido
     public function findAllOrderedByDate()
     {
         $em = $this->getEntityManager();

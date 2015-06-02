@@ -98,23 +98,17 @@
                 {{ form_widget(edit_form.coment,{'attr':{'class':'form-control'}}) }}
 
             </div>
-            <div class="form-group">
-                {{ form_widget(edit_form.submit,{'label':'Actualizar','attr':{'class':'btn btn-default'}}) }}
-            </div>
 
-
-            {{ form_end(edit_form) }}
         </fieldset>
+        <hr>
+        <ul class="list-inline">
+            <li>{{ form_widget(edit_form.submit,{'label':'Actualizar','attr':{'class':'btn btn-success'}}) }}</li>{{ form_end(edit_form) }}
+            <li>{{ form(delete_form) }}</li>
+            <li><a href="{{ path('evento') }}" class="btn btn-primary" >Ir a lista</a></li>
+            <li><a href="{{ path('evento_show', { 'id': entity.id }) }}" class="btn btn-default" >Mostrar</a></li>
+        </ul>
 
 
-        <div class="row">
-            <div class="col-md-2">{{ form(delete_form) }}</div>
-            <div class="col-md-2"><a href="{{ path('evento') }}" class="btn btn-default" >Ir a lista</a></div>
-            <div class="col-md-2"> <a href="{{ path('evento_show', { 'id': entity.id }) }}" class="btn btn-default" >Mostrar</a></div>
-
-        </div>
-
-        <br>
         {% endblock %}
 
         {% block js %}
