@@ -1,33 +1,33 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
 {% block body -%}
     <br>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
 
-            <h1><small><i class="fa fa-book"></i> Eventos proximos</small></h1>
-            <hr>
-            {#{{ "Saturday this week" |date('d') }}#}
-            {% for entity in entities %}
-                <h3>{{ entity.seminario }}<small> {{ entity.lugar }}</small></h3>
-                Responsables:
-                {% for responsable in entity.seminario.responsables %}
-                    <a href="{{ path('responsable_show', { 'id': responsable.id }) }}">{{ responsable.nombre }} {{ responsable.apellidos }} </a> /
-                {% endfor %}
-                <div class="well well-lg">
+    <h1><small><i class="fa fa-book"></i> Eventos proximos CCM</small></h1>
+    Del {{ "next week"|localizeddate('none', 'none', 'es-MX', null, "d 'de' MMMM") }} al {{ "next week"|date_modify("+4 day")|localizeddate('none', 'none', 'es-MX', null, "d 'de' MMMM y") }}
+    <hr>
+    <br><br>
+    {% for entity in entities %}
+        <div class="row">
+            <div class="col-md-1 text-center">
+                {# {{ entity.fecha|date('d-m-Y') }} #}
+                <button type="button" class="btn btn-primary">
+                    <strong>{{ entity.fecha|date('d', false) }}</strong><br />
+                    {{ entity.fecha|localizeddate('none', 'none',  'es-MX', null, "EEE") }}
+                </button>
+            </div>
+            <div class="col-md-11">
+                <span style="font-size: 18px; color: #777">{{ entity.seminario | upper }}</span>
+                <h4>{{ entity.platica }}</h4>
+                <strong>{{ entity.ponente }}</strong> - <em>{{ entity.origen }}</em><br /><br />
+                {{ entity.lugar }}<br />
+                {{ entity.hora|date('H:i') }} hrs<br /><br />
+                {#{{ entity.fecha|localizeddate('none', 'none',  'es-MX', null, "cccc, d MMMM Y 'às' hh:mm aaa") }}#}
 
-                    <p align="center"><b>{{ entity.platica }}</b></p>
-                    <h4>{{ entity.ponente }}<small> {{ entity.origen }}</small></h4>
-                    <hr>
-                    <p align="justify" >{{ entity.resumen }}</p>
-                    <p>{{ entity.coment }}</p>
-                    <hr>
-                    <h5 align="right">{{ entity.fecha|date('d-m-Y') }} {{ entity.hora|date('H:i') }} hrs</h5>
-                    <a href="{{ path('eventos_anteriores',{'seminario': entity.seminario.id}) }}">
-                        Eventos anteriores
-                    </a>
-                </div>
-            {% endfor %}
+                <div class="page-header"></div>
+            </div>
         </div>
-    </div>
+
+
+    {% endfor %}
 
 {% endblock %}

@@ -32,27 +32,24 @@ class SeminarioRepository extends EntityRepository
     }
     public function findEventosSemana()
     {
-        $fecha= date("W");
-        $lunes= date('Y/m/d',strtotime(date("Y")."W".$fecha."1"));
-        $viernes= date('Y/m/d',strtotime(date("Y")."W".$fecha."5"));
+        $lunes= date('Y/m/d',strtotime('Monday this week'));
+        $viernes= date('Y/m/d',strtotime('Friday this week'));
         $em = $this->getEntityManager();
         $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fechaCap DESC';
         $consulta = $em->createQuery($dql);
-        //$consulta->setParameter('fecha',$fechaHoy);
-        //$consulta-> setParameter('seminario',$seminario);
         $consulta->setParameters(array('lunes'=>$lunes,'viernes'=>$viernes));
         return $consulta->getResult();
     }
     public function findEventosSemanaSig()
     {
         $fecha= date("W")+1;
-        $lunes= date('Y/m/d',strtotime(date("Y")."W".$fecha."1"));
-        $viernes= date('Y/m/d',strtotime(date("Y")."W".$fecha."5"));
+        //$lunes= date('Y/m/d',strtotime(date("Y")."W".$fecha."1"));
+        //$viernes= date('Y/m/d',strtotime(date("Y")."W".$fecha."5"));
+        $lunes= date('Y/m/d',strtotime('Monday next week'));
+        $viernes= date('Y/m/d',strtotime('Friday next week'));
         $em = $this->getEntityManager();
         $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fechaCap DESC';
         $consulta = $em->createQuery($dql);
-        //$consulta->setParameter('fecha',$fechaHoy);
-        //$consulta-> setParameter('seminario',$seminario);
         $consulta->setParameters(array('lunes'=>$lunes,'viernes'=>$viernes));
         return $consulta->getResult();
     }
