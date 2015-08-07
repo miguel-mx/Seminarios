@@ -1,11 +1,14 @@
 {% extends 'SeminarioBundle::layout.html.twig' %}
+
 {% block body -%}
     <br>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-2">
             <h1><small><i class="fa fa-list"></i>&nbsp;&nbsp;Eventos anteriores</small></h1>
+
             <hr>
             {#{{ "Saturday this week" |date('d') }}#}
+
             {% for entity in entities %}
                 <h4>{{ entity.seminario }}<small> {{ entity.lugar }}</small></h4>
                 Responsables:
@@ -15,13 +18,15 @@
 
                 <div class="well well-lg">
 
-                    <p align="center"><b>{{ entity.platica }}</b></p>
-                    <h4>{{ entity.ponente }}<small> {{ entity.origen }}</small></h4>
+                    <h4><strong>{{ entity.ponente }}</strong><small> {{ entity.origen }}</small></h4>
+                    <p><h4>{{ entity.platica }}</h4></p>
+{#
                     <hr>
                     <p align="justify" >{{ entity.resumen }}</p>
                     <p>{{ entity.coment }}</p>
                     <hr>
-                    <h5 align="right">{{ entity.fecha|date('d-m-Y') }} {{ entity.hora|date('H:i') }} hrs</h5>
+#}
+                    <p align="right"><small>{{ entity.fecha|date('d-m-Y') }} {{ entity.hora|date('H:i') }} hrs</small></p>
 
                 </div>
             {% endfor %}

@@ -1,0 +1,15 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+{% extends 'SeminarioBundle::layout.html.twig' %}
+
+{% block body %}
+
+    <div class="alert alert-danger" role="alert">
+        <h2>The server returned a "{{ status_code }} - {{ status_text }} {{ exception }}".</h2>
+    </div>
+
+    {# example security usage, see below #}
+    {% if app.user and is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+
+{% endblock %}
