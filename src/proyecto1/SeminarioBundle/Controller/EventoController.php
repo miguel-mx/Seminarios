@@ -20,10 +20,10 @@ class EventoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosAnteriores($seminario);
 
-        if(!$entities)
+/*        if(!$entities)
         {
             throw $this->createNotFoundException('No se han encontrado eventos anteriores');
-        }
+        }*/
         return $this->render('SeminarioBundle:Evento:eventos_ant.html.twig', array(
             'entities' => $entities,
         ));
@@ -33,10 +33,10 @@ class EventoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
-        if(!$entities)
+/*        if(!$entities)
         {
             throw $this->createNotFoundException('No se han encontrado eventos');
-        }
+        }*/
         return $this->render('SeminarioBundle:Evento:eventos_semanal.html.twig', array(
             'entities' => $entities,
         ));
@@ -47,10 +47,10 @@ class EventoController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemanaSig();
-        if(!$entities)
+/*        if(!$entities)
         {
             throw $this->createNotFoundException('No se han encontrado eventos');
-        }
+        }*/
         return $this->render('SeminarioBundle:Evento:eventos_sig_semana.html.twig', array(
             'entities' => $entities,
         ));
@@ -134,7 +134,7 @@ class EventoController extends Controller
      */
     public function newAction($id)
     {
-        $seminar = new Seminario();
+        //$seminar = new Seminario();
         $em = $this->getDoctrine()->getManager();
         $seminar = $em->getRepository('SeminarioBundle:Seminario')->find($id);
         $entity = new Evento();
@@ -145,7 +145,6 @@ class EventoController extends Controller
         {
             throw $this->createNotFoundException('Seminario Inactivo no se puede crear evento');
         }
-
 
         $form   = $this->createCreateForm($entity);
 
@@ -310,7 +309,7 @@ class EventoController extends Controller
     public function icsAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendar();
+        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosToCalendarAll();
 
         $provider = $this->get('bomo_ical.ics_provider');
         $tz = $provider->createTimezone();
@@ -326,7 +325,7 @@ class EventoController extends Controller
             ->setDescription('Calendario de Coloquios y Seminarios CCM-UNAM Campus Morelia')
         ;
 
-        $datetime = new \Datetime('2015-04-28 13:00');
+        //$datetime = new \Datetime('2015-04-28 13:00');
         foreach ($eventos_semana as $evento_semana) {
             $fecha= $evento_semana->getFecha();
             $hora= $evento_semana->getHora();
@@ -364,5 +363,4 @@ class EventoController extends Controller
     }
 
 }
-
 
