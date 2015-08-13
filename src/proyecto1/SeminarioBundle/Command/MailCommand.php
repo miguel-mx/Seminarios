@@ -39,9 +39,9 @@ class MailCommand extends ContainerAwareCommand
 
         $mailer = $this->getContainer()->get('mailer');
         $mensaje = $mailer->createMessage()
-            ->setSubject('Seminarios de la semana Centro de Ciencias Matemáticas')
-            ->setFrom('usuariosccm15@gmail.com')
-            ->setTo('abner1991@outlook.es')
+            ->setSubject('Seminarios de la semana - Centro de Ciencias Matemáticas UNAM')
+            ->setFrom('webmaster@matmor.unam.mx')
+            ->setTo('rudos@matmor.unam.mx')
             ->setBody($cad)
 
         ;
