@@ -1,0 +1,513 @@
+/* RESET */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+/*address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:normal;}
+ol,ul {list-style:none;}*/
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+q:before,q:after{content:'';}
+.designer, .designer a, .designer a:visited {text-align:center; text-decoration:none; margin-bottom:10px; font:11px normal Arial, Helvetica, sans-serif; color:#666;}
+.cright {display:none}
+.nopad {margin: 0px;padding: 0px;}
+/* @end */
+
+/* @group Basic Styles */
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+body {
+    /*background: #333;*/
+    margin: 10px 0px 10px 0px;
+    padding: 0;
+    font: 102%/1.4em "Trebuchet MS", Tahoma, Verdana, Helvetica;
+    letter-spacing: normal;
+    color:#666;
+}
+html {
+    margin: 0;
+    padding: 0;
+    font-size: small;
+}
+
+a:focus {
+    outline: 0;
+}
+
+#mainbody ul {
+    padding-left: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #74AC00;
+}
+
+p {
+    margin: 0px 0px 10px 0px;
+    color: #666;
+}
+
+td {
+    color: #666;
+}
+
+p a, ul a, a.pagenav {
+    padding: 1px;
+    color: #74AC00;
+    text-decoration: underline;
+}
+p a:hover, ul a:hover, a.pagenav:hover {
+    color: #fff;
+    background: #74AC00;
+    text-decoration: none;
+}
+table.contentpaneopen span a {
+    padding: 1px;
+    color: #74AC00;
+    text-decoration: underline;
+}
+table.contentpaneopen span a:hover {
+    color: #fff;
+    background: #74AC00;
+    text-decoration: none;
+}
+
+
+a.category {
+    padding: 1px;
+    color: #74AC00;
+    text-decoration: underline;
+}
+
+a.category:hover {
+    color: #fff;
+    background: #74AC00;
+    text-decoration: none;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: none;
+}
+
+.clear {
+    clear: both;
+}
+
+#mainbody h1 {
+    font: bold 2.5em/1.5em Helvetica, Arial, Verdana, serif;
+    letter-spacing: -1px;
+    color: #1652c2;
+}
+
+#mainbody h2 {
+    font: bold 2em/1.75em Arial, Verdana, serif;
+    letter-spacing: -1px;
+    color: #000;
+}
+
+#mainbody h3 {
+    font: bold 1.5em/1.75em Arial, Verdana, serif;
+    letter-spacing: -1px;
+    color: #2d3129;
+}
+#mainbody h4 {
+    font: bold 1.25em/1.5em Arial, Verdana, serif;
+    letter-spacing: -1px;
+    color: #2d3129;
+}
+
+#outerwrap {
+    width: 976px;
+    margin: 0px auto;
+}
+
+#wrapper {
+    background: #FFF url(../images/main_bg.png) repeat-y center;
+    margin: 0px auto;
+    padding: 0px 15px;
+    float: left;
+}
+
+ul#checklist li {
+    list-style: none;
+    line-height: 16px;
+    padding: 2px 0px 2px 18px;
+    background: url(../images/tick.png) no-repeat left center;
+}
+blockquote {
+    background: #fffee4;
+    color: #333;
+    border: 1px solid #d5d5d5;
+    padding: 10px;
+    margin: 10px 50px;
+}
+
+/* @end */
+
+
+/* @group Mainbody */
+
+#mainbody {
+    float: right;
+    margin: 0;
+    padding: 10px 0px 0px 0px;
+    width: 700px;
+    text-align: justify;
+    _background: #fff;
+}
+
+#mainbody .inside {
+    margin: 0;
+    padding: 0;
+}
+
+#bottombar {
+    background: url(../images/footer.png) no-repeat center top;
+    height: 9px;
+    width: 976px;
+}
+
+/* @end */
+
+/* @group Joomla Styles */
+
+.small, .modifydate, .createdate {
+    color: #b6b6b6;
+    font: .85em/.85em "Trebuchet MS", Tahoma, Verdana, Helvetica;
+}
+
+td.createdate {
+    text-indent: 20px;
+    line-height: 20px;
+    background: url(../images/clock_edit.png) no-repeat left center;
+}
+
+td.modifydate {
+    text-indent: 20px;
+    line-height: 20px;
+    background: url(../images/page_edit.png) no-repeat left center;
+    border-top: 1px dotted #f2f2f2;
+}
+
+form {
+    padding: 0;
+    margin: 0;
+}
+
+a.readon {
+    color: #74AC00;
+    display: block;
+    float: right;
+    line-height: 12px;
+    background: url(../images/readon.gif) no-repeat left center;
+    text-indent: 16px;
+    text-decoration: underline;
+}
+a.readon:hover {
+    color: #74AC00;
+    display: block;
+    float: right;
+    line-height: 12px;
+    background: url(../images/readon.gif) no-repeat left center;
+    text-indent: 16px;
+    text-decoration: none;
+}
+
+td.contentheading {
+    font: 1.75em Helvetica, Arial, Verdana, serif;
+    letter-spacing: -1px;
+    color: #0093E3;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    overflow: hidden;
+}
+
+.componentheading {
+    font: 1.75em Helvetica, Arial, Verdana, serif;
+    letter-spacing: -1px;
+    color: #74AC00;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+a.contentpagetitle, .contentpagetitle a, .contentpagetitle a:visited {
+    color: #0E5199;
+    font: 1.25em "Trebuchet MS", Tahoma, Verdana, Helvetica;
+    letter-spacing: -1px;
+}
+
+a.contentpagetitle:hover, .contentpagetitle a:hover {
+    color: #333;
+    font: 1.25em "Trebuchet MS", Tahoma, Verdana, Helvetica;
+    letter-spacing: -1px;
+}
+
+div.syndicate div {
+    padding: 1px;
+}
+
+td.buttonheading a img {
+    padding: 0px 0px 0px 4px;
+}
+
+span.content_rating {
+    color: #888;
+    font-size: 10px;
+    text-transform: uppercase;
+    position: relative;
+    top: 5px;
+}
+
+label {
+    color: #8e8e8e;
+}
+
+div.mosimage {
+    border: 1px solid #eaeaea;
+    margin: 7px;
+}
+
+div.mosimage_caption {
+    padding: 2px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #eee;
+}
+
+span.content_rating img {
+    padding-bottom: 10px;
+    margin: 0px;
+}
+
+div.back_button a {
+    color: #7f7f7f;
+    background-color: #eaeaea;
+    padding: 0px;
+    position: relative;
+    top: 10px;
+    float: none;
+    margin: 20px;
+    height: 16px;
+    display: block;
+    width: 50px;
+    text-align: center;
+    line-height: 16px;
+    text-transform: uppercase;
+    font-variant: small-caps;
+    font-size: 11px;
+    border: 1px solid #c0c0c0;
+}
+
+th.pagenav_prev a {
+    text-indent: -5000px;
+    display: block;
+    background: url(../images/next_prev.png) no-repeat 0px -44px;
+    width: 94px;
+    height: 22px;
+    border: none;
+}
+
+th.pagenav_prev a:hover {
+    text-indent: -5000px;
+    display: block;
+    background: url(../images/next_prev.png) no-repeat 0px -66px;
+    width: 94px;
+    height: 22px;
+    border: none;
+}
+
+th.pagenav_next a {
+    text-indent: -5000px;
+    display: block;
+    background: url(../images/next_prev.png) no-repeat 0px 0px;
+    width: 94px;
+    height: 22px;
+    border: none;
+}
+
+th.pagenav_next a:hover {
+    text-indent: -5000px;
+    display: block;
+    background: url(../images/next_prev.png) no-repeat 0px -22px;
+    width: 94px;
+    height: 22px;
+    border: none;
+}
+
+input.button {
+    color: #74AC00;
+    padding: 4px;
+    margin: 10px;
+    font-size: 10px;
+    background: url(../images/but_bg.png) repeat-x center center;
+    border:1px solid #ccc;
+}
+
+div.message {
+    color: #cd2800;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.inputbox {
+    border: 1px solid #999;
+}
+
+.moduletable .inputbox {
+    border: 1px solid #999;
+    height: 14px;
+    font: 11px Arial, Helvetica, Geneva, sans-serif;
+    color: #333;
+}
+
+/* @end */
+
+/* @group Joomla Tables */
+
+table.blog td {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+table.contentpaneopen {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+table table.contentpaneopen td, table table.contentpane td {
+    margin: 0px 8px;
+    padding: 0;
+    width: 100%;
+}
+
+div.contentpane, div.contentpaneopen {
+    width: 100%;
+}
+
+table.contentpaneopen, table.contentpane, table.blog, table.contentpaneopen td {
+    border-collapse: collapse;
+    padding: 3px;
+    width: 99%;
+}
+
+body.contentpane {
+    background: #fff;
+    margin: 25px;
+}
+
+td.sectiontableheader {
+    background: #0E5199 url(../images/sectblhdr.png) repeat-x top;
+    color: #FFF;
+    font-weight: bold;
+    height: 22px;
+    padding: 4px;
+}
+
+tr.sectiontableentry1 td {
+    padding: 2px;
+    background-color: #fbfbfb;
+    text-align: left;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #dfdfdf;
+}
+
+tr.sectiontableentry2 td {
+    padding: 2px;
+    background-color: #f3f3f3;
+    text-align: left;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #fff;
+}
+
+td.sectiontableentry1 {
+    padding: 2px;
+    background-color: #f8f8f8;
+}
+
+td.sectiontableentry2 {
+    padding: 2px;
+    background-color: #F2F2F2;
+}
+
+.sectiontableentry2 a, .sectiontableentry1 a, .sectiontableentry2 a.category, .sectiontableentry1 a.category {
+    padding-left: 4px;
+    color: #74ac00;
+}
+
+.sectiontableentry2 a:hover, .sectiontableentry1 a:hover, .sectiontableentry2 a.category:hover, .sectiontableentry1 a.category:hover {
+    color: #333333;
+    background: none;
+}
+
+span.pagenav {
+    color: #ccc;
+}
+
+table.pollstableborder td {
+    padding: 0;
+    text-align: left;
+}
+
+.pollstableborder td, .pollstableborderS2 td, pollstableborderS1 td, pollstableborderS3 td {
+    text-align: left;
+    font: 0.87em/0.92em Arial, Helvetica, sans-serif;
+    padding: 3px 0px 3px 5px;
+    vertical-align: middle;
+}
+
+/* @end */
+
+p.warn {
+    background: #FBEEF1 url(../images/warn.png) center no-repeat;
+    background-position: 15px 50%; /* x-pos y-pos */
+    text-align: left;
+    padding: 5px 20px 5px 45px;
+    border-top: 2px solid #FEABB9;
+    border-bottom: 2px solid #FEABB9;
+}
+
+p.alert {
+    background: #FFF7C0 url(../images/exc.png) center no-repeat;
+    background-position: 15px 50%; /* x-pos y-pos */
+    text-align: left;
+    padding: 5px 20px 5px 45px;
+    border-top: 2px solid #F7D229;
+    border-bottom: 2px solid #F7D229;
+}
+
+p.info {
+    background: #F8FAFC url(../images/info.png) center no-repeat;
+    background-position: 15px 50%; /* x-pos y-pos */
+    text-align: left;
+    padding: 5px 20px 5px 45px;
+    border-top: 2px solid #B5D4FE;
+    border-bottom: 2px solid #B5D4FE;
+}
+
+p.dashed {
+    background: #CCFFCC; /* #C3FDB8;*/
+    text-align: left;
+    padding: 5px 20px 5px 45px;
+    border: 1px dashed #090909;
+}
+
+p.bloquegris {
+    background: #FAFAFA;
+    text-align: left;
+    padding: 5px 20px 5px 45px;
+    border: 1px solid #CCCCCC;
+}

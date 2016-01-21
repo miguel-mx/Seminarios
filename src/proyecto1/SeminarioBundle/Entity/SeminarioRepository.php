@@ -14,10 +14,12 @@ class SeminarioRepository extends EntityRepository
 {
 
     //Ordenar por fecha no funciona por la datatable!! orden predefinido
+    // Los métodos de búsqueda de Eventos deberían estar en un Repositorio de Eventos
+
     public function findAllOrderedByDate()
     {
         $em = $this->getEntityManager();
-        $dql = 'SELECT e FROM SeminarioBundle:Evento e ORDER BY e.fechaCap DESC';
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e ORDER BY e.fecha DESC';
         $consulta = $em->createQuery($dql);
         return $consulta->getResult();
     }
@@ -25,9 +27,17 @@ class SeminarioRepository extends EntityRepository
     {
         $fechaHoy= new \DateTime('today');
         $em = $this->getEntityManager();
-        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.seminario = :seminario AND e.fecha < :fecha ORDER BY e.fechaCap DESC';
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.seminario = :seminario AND e.fecha < :fecha ORDER BY e.fecha DESC';
         $consulta = $em->createQuery($dql);
         $consulta->setParameters(array('fecha'=>$fechaHoy ,'seminario'=>$seminario));
+        return $consulta->getResult();
+    }
+    public function findEventos($seminario)
+    {
+        $em = $this->getEntityManager();
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.seminario = :seminario ORDER BY e.fecha DESC';
+        $consulta = $em->createQuery($dql);
+        $consulta->setParameters(array('seminario'=>$seminario));
         return $consulta->getResult();
     }
     public function findEventosSemana()
@@ -35,7 +45,7 @@ class SeminarioRepository extends EntityRepository
         $lunes= date('Y/m/d',strtotime('Monday this week'));
         $viernes= date('Y/m/d',strtotime('Friday this week'));
         $em = $this->getEntityManager();
-        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fechaCap DESC';
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fecha DESC';
         $consulta = $em->createQuery($dql);
         $consulta->setParameters(array('lunes'=>$lunes,'viernes'=>$viernes));
         return $consulta->getResult();
@@ -48,7 +58,7 @@ class SeminarioRepository extends EntityRepository
         $lunes= date('Y/m/d',strtotime('Monday next week'));
         $viernes= date('Y/m/d',strtotime('Friday next week'));
         $em = $this->getEntityManager();
-        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fechaCap DESC';
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fecha DESC';
         $consulta = $em->createQuery($dql);
         $consulta->setParameters(array('lunes'=>$lunes,'viernes'=>$viernes));
         return $consulta->getResult();
@@ -63,7 +73,7 @@ class SeminarioRepository extends EntityRepository
 
 
         $em = $this->getEntityManager();
-         $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fechaCap DESC';
+         $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fecha DESC';
         $consulta = $em->createQuery($dql);
         //$consulta->setParameter('fecha',$fechaHoy);
         //$consulta-> setParameter('seminario',$seminario);
@@ -74,7 +84,7 @@ class SeminarioRepository extends EntityRepository
     public function findEventosToCalendarAll()
     {
         $em = $this->getEntityManager();
-        $dql = 'SELECT e FROM SeminarioBundle:Evento e ORDER BY e.fechaCap DESC';
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e ORDER BY e.fecha DESC';
         $consulta = $em->createQuery($dql);
 
         return $consulta->getResult();

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="seminarios" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{% block title %}Seminarios CCM-UNAM{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/seminario/css/starter-template.css') }}" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<h4><strong><i class="fa fa-pie-chart"></i>  Coloquio del PCCM</strong></h4>
+<br />
+
+{% set i = 1 %}
+
+{% for entity in entities %}
+
+    {% set i = i + 1 %}
+
+    <p><small><strong><i class="fa fa-calendar"></i> {{ entity.fecha|localizeddate('none', 'none',  'es-MX', null, "dd 'de' MMMM 'del' yyyy") }}<br /></strong>
+    <button type="button" class="btn btn-link btn-xs" data-toggle="modal" data-target="#coloquio{{ i }}">{{ entity.platica }},</button>
+    <i>{{ entity.ponente }}</i><br />
+    {{ entity.lugar }}. {{ entity.hora|date('H:i') }} horas.</small></p>
+
+    <div class="modal fade" id="coloquio{{ i }}" tabindex="-1" role="dialog" aria-labelledby="coloquio{{ i }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h3 class="modal-title">{{ entity.platica }}</h3>
+                </div>
+                <div class="modal-body">
+                    <p><strong>{{ entity.ponente }}</strong><br>
+                    {{ entity.origen }}</p>
+                    <p align="justify"><strong>Resumen</strong><br />{{ entity.resumen }}</p>
+                    <p>{{ entity.fecha|localizeddate('none', 'none',  'es-MX', null, "dd 'de' MMMM 'del' yyyy") }}<br>
+                    {{ entity.lugar }}. {{ entity.hora|date('H:i') }} horas.</p>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Cerrar</button>
+            </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+{% endfor %}
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</body>
+</html>

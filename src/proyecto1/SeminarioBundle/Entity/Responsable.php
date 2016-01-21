@@ -190,4 +190,5 @@ class Responsable
     {
         return $this->seminarios;
     }
+
 }

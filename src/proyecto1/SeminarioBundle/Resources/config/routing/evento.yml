@@ -6,6 +6,14 @@ eventos_semana:
     path:     /semana
     defaults: { _controller: "SeminarioBundle:Evento:semana" }
 
+pccm:
+    path:     /pccm
+    defaults: { _controller: "SeminarioBundle:Evento:pccm" }
+
+eventos_matmor:
+    path:     /matmor
+    defaults: { _controller: "SeminarioBundle:Evento:semanaMatmor" }
+
 eventos_semanasig:
     path:     /semana-siguiente
     defaults: { _controller: "SeminarioBundle:Evento:semanasig" }

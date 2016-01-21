@@ -17,35 +17,48 @@ class MailCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        setlocale(LC_ALL, 'es_MX');
 
         $contenedor = $this->getContainer();
         $em = $contenedor->get('doctrine')->getManager();
-        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
-        $cad='';
+        $eventos_semana = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemanaSig();
+
+        // Si no hay eventos termina
+        if(count($eventos_semana) == 0) {
+            $output->writeln("No hay eventos \n");
+            return;
+        }
+
+        $cad="-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠-⁠CENTRO DE CIENCIAS MATEMATICAS\n\n";
+
         foreach ($eventos_semana as $evento_semana) {
+
+            $nombre = $evento_semana->getSeminario()->getNombre() . "\n";
+            $responsables = "Responsables: " . $evento_semana->getResponsables() . "\n\n";
+
+            $platica = "\t" . $evento_semana->getPlatica() . "\n";
+            $ponente = "\t" . $evento_semana->getPonente() . " - " . $evento_semana->getOrigen() . "\n";
+
             $fecha = $evento_semana->getFecha();
             $hora = $evento_semana->getHora();
+            $fechahora = new \DateTime($fecha->format('d-m-Y') . ' ' . $hora->format('H:i'));
+            $lugar = "\t" . $evento_semana->getLugar() . "\n\n";
 
-            $fechahora = new \DateTime($fecha->format('Y-m-d') . ' ' . $hora->format('H:i:s'));
+            $resumen =  wordwrap($evento_semana->getResumen(), 70, "\n");
 
-            $nombre = $evento_semana->getSeminario()->getResponsables();
-            $res= $nombre[0];
-            $descripcion = $evento_semana->getPlatica();
-            $comentario = $evento_semana->getResumen();
-            $localizacion = $evento_semana->getOrigen();
-            $organizador = $evento_semana->getOrigen();
-            $cad = $res . "\n" . $comentario."\n".$cad."\n";
+            $cad .= $nombre . $responsables . $platica. $ponente . "\t" . strftime("%A %d - %H:%M hrs.", $fechahora->getTimestamp()) . "\n"  . $lugar . $resumen . "\n\n";
         }
 
         $mailer = $this->getContainer()->get('mailer');
         $mensaje = $mailer->createMessage()
             ->setSubject('Seminarios de la semana - Centro de Ciencias Matemáticas UNAM')
             ->setFrom('webmaster@matmor.unam.mx')
-            ->setTo('rudos@matmor.unam.mx')
+            ->setTo('miguel@matmor.unam.mx')
             ->setBody($cad)
 
         ;
         $resul=$mailer->send($mensaje);
+
         $output->writeln($cad);
 
 

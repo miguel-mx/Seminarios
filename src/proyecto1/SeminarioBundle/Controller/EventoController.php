@@ -29,6 +29,21 @@ class EventoController extends Controller
         ));
 
     }
+    public function pccmAction()
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventos(1);
+
+        /*        if(!$entities)
+                {
+                    throw $this->createNotFoundException('No se han encontrado eventos anteriores');
+                }*/
+        return $this->render('SeminarioBundle:Evento:pccm.html.twig', array(
+            'entities' => $entities,
+        ));
+
+    }
     public function semanaAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -38,6 +53,19 @@ class EventoController extends Controller
             throw $this->createNotFoundException('No se han encontrado eventos');
         }*/
         return $this->render('SeminarioBundle:Evento:eventos_semanal.html.twig', array(
+            'entities' => $entities,
+        ));
+
+    }
+    public function semanaMatmorAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
+        /*        if(!$entities)
+                {
+                    throw $this->createNotFoundException('No se han encontrado eventos');
+                }*/
+        return $this->render('SeminarioBundle:Evento:eventos_matmor.html.twig', array(
             'entities' => $entities,
         ));
 
@@ -79,12 +107,18 @@ class EventoController extends Controller
      */
     public function createAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $entity = new Evento();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
+        // Recupera los responsables de los seminarios
+        $entity->setResponsables($entity->getSeminario()->getResponsablesStr());
+
         $fecha = new \DateTime('now');
         $efecha = $entity->getFecha();
+
         if ( $efecha < $fecha ) {
             throw $this->createNotFoundException('La fecha no es valida.');
 
@@ -92,14 +126,15 @@ class EventoController extends Controller
 
         if ($form->isValid()) {
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
             $request->getSession()->getFlashBag()->add(
                 'notice',
                 'Evento creado exitosamente!'
             );
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
             return $this->redirect($this->generateUrl('evento_show', array('id' => $entity->getId())));
         }
 
@@ -141,6 +176,7 @@ class EventoController extends Controller
         $entity->setLugar($seminar->getLugar());
         $entity->setHora($seminar->getHora());
         $entity->setSeminario($seminar);
+
         if(!$seminar->getEstatus())
         {
             throw $this->createNotFoundException('Seminario Inactivo no se puede crear evento');

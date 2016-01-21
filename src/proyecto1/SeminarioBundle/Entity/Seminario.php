@@ -200,4 +200,26 @@ class Seminario
         return $this->responsables;
     }
 
+    /**
+     * Get responsablesStr
+     *
+     * @return string
+     */
+    public function getResponsablesStr()
+    {
+        $listaResp= "";
+
+        foreach($this->responsables as $resp){
+
+            $listaResp .= $resp->getNombre() . ' ' . $resp->getApellidos() . ', ';
+
+        }
+
+        // Borra la última coma
+        if(strlen($listaResp))
+            $listaResp = substr($listaResp, 0, -2);
+
+        return $listaResp;
+    }
+
 }

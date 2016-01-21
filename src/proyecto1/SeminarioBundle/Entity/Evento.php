@@ -39,8 +39,15 @@ class Evento
      *
      * @ORM\Column(name="lugar", type="string", length=255)
      */
-    
     private $lugar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="responsables", type="string", length=255)
+     */
+    private $responsables;
+
     /**
      * @var \DateTime
      *
@@ -175,6 +182,30 @@ class Evento
     {
         return $this->lugar;
     }
+
+    /**
+     * Set responsables
+     *
+     * @param string $responsables
+     * @return Evento
+     */
+    public function setResponsables($responsables)
+    {
+        $this->responsables = $responsables;
+
+        return $this;
+    }
+
+    /**
+     * Get responsables
+     *
+     * @return string
+     */
+    public function getResponsables()
+    {
+        return $this->responsables;
+    }
+
 
     /**
      * Set fecha
@@ -382,4 +413,6 @@ class Evento
     {
         return $this->seminario;
     }
+
+
 }
