@@ -79,7 +79,5 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    #spool:     { type: memory }  #valor por defecto
-    #spool:
-     #   type: file
-      #  path: "%kernel.root_dir%/spool"
+    encryption: "%mailer_encryption%"
+    port: "%mailer_port%"
