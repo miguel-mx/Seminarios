@@ -60,9 +60,6 @@ class MailCommand extends ContainerAwareCommand
         $resul=$mailer->send($mensaje);
 
         $output->writeln($cad);
-
-
-
     }
 }
 

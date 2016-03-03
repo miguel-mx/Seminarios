@@ -2,57 +2,75 @@
 
 {% block body -%}
     <br>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-    {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-1">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
 
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ flashMessage }}
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            <h3>{{ entity.nombre }}</h3>
+            <br>
+
+            <table class="table">
+                <tbody class=".table-hover">
+                <tr>
+                    <th>Lugar</th>
+                    <td>{{ entity.lugar }}</td>
+                </tr>
+                <tr>
+                    <th>Hora</th>
+                    <td>{{ entity.hora |date('H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Responsables</th>
+                    <td>
+                        <ol class="breadcrumb">
+                            {% for responsable in entity.responsables %}
+                                {#<li><a href="http://hugo.local/app_dev.php/responsable/{{ responsable.id }}/show">{{ responsable.nombre }} {{ responsable.apellidos }}</a></li>#}
+
+                                <li><a href="{{ path('responsable_show', { 'id': responsable.id }) }}">{{ responsable.nombre }} {{ responsable.apellidos }}</a></li>
+
+                            {% endfor %}
+                        </ol>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <ul class="list-inline">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>{{ form(delete_form) }}</li>
+                    <li><a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></li>
+                {% endif %}
+                <li><a href="{{ path('seminario') }}" class="btn btn-primary" >Regresar a seminarios</a></li>
+                <li><a href="{{ path('evento_new', { 'id': entity.id }) }}" class="btn btn-success" >
+                        <i class="fa fa-plus-square-o"></i> Nuevo</a></li>
+            </ul>
+
         </div>
+    </div>
 
-    {% endfor %}
-    <h3>Seminario</h3>
-        <br>
+    <div class="row">
+        <div class="col-md-11 col-md-offset-1">
+            <div class="page-header"><h3>Eventos</h3></div>
+            {# Lista de eventos del seminario #}
 
-                <table class="table">
-                    <tbody class=".table-hover">
-                        <tr>
-                            <th>Nombre</th>
-                            <td>{{ entity.nombre }}</td>
-                        </tr>
-                        <tr>
-                            <th>Lugar</th>
-                            <td>{{ entity.lugar }}</td>
-                        </tr>
-                        <tr>
-                            <th>Hora</th>
-                            <td>{{ entity.hora |date('H:i:s') }}</td>
-                        </tr>
-                        <tr>
-                            <th>Responsables</th>
-                            <td>
-                                <ol class="breadcrumb">
-                                {% for responsable in entity.responsables %}
-                                    {#<li><a href="http://hugo.local/app_dev.php/responsable/{{ responsable.id }}/show">{{ responsable.nombre }} {{ responsable.apellidos }}</a></li>#}
-
-                                    <li><a href="{{ path('responsable_show', { 'id': responsable.id }) }}">{{ responsable.nombre }} {{ responsable.apellidos }}</a></li>
-
-                                {% endfor %}
-                                </ol>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-
-    <ul class="list-inline">
-        {% if is_granted('ROLE_ADMIN') %}
-            <li>{{ form(delete_form) }}</li>
-            <li><a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-default">Editar </a></li>
-        {% endif %}
-        <li><a href="{{ path('seminario') }}" class="btn btn-primary" >Ir a lista</a></li>
-    </ul>
+            {% for evento in eventos %}
+                <div class="well blockquote">
+                    <h4><a href="{{ path('evento_show', { 'id': evento.id }) }}">{{ evento.platica }}</a></h4>
+                    <div class="text-muted">
+                        <strong>{{ evento.ponente }}</strong> -  {{ evento.origen}}
+                        <div class="pull-right"><em><small>{{ evento.fecha | localizeddate('none', 'none', 'es-MX', null, "d 'de' MMMM 'del' Y") }}</small></em></div>
+                    </div>
+                </div>
+        {% endfor %}
+        </div>
+    </div>
 
 
 {% endblock %}

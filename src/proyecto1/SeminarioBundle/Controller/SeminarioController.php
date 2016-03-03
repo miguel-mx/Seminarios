@@ -106,6 +106,7 @@ class SeminarioController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SeminarioBundle:Seminario')->find($id);
+        $eventos = $em->getRepository('SeminarioBundle:Evento')->findEventos($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Seminario entity.');
@@ -115,6 +116,7 @@ class SeminarioController extends Controller
 
         return $this->render('SeminarioBundle:Seminario:show.html.twig', array(
             'entity'      => $entity,
+            'eventos'     => $eventos,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -3,7 +3,7 @@
 {% block body -%}
     <br>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-1">
             {% for flashMessage in app.session.flashbag.get('notice') %}
 
                 <div class="alert alert-success alert-dismissible" role="alert">
@@ -11,49 +11,35 @@
                     {{ flashMessage }}
                 </div>
             {% endfor %}
-            <h3>Evento</h3>
+            <h3>{{ entity.seminario.nombre }}</h3>
+
+            <div class="page-header"><h3>{{ entity.platica }}</h3></div>
+            <strong>{{ entity.ponente }}</strong> - <em>{{ entity.origen }}</em><br />
+            <br />
+            {{ entity.fecha|localizeddate('none', 'none',  'es-MX', null, "cccc, d 'de' MMMM 'del' Y") }}<br />
+            {{ entity.lugar }}<br />
+            {{ entity.hora|date('H:i') }} horas<br /><br />
+            <div class="well panel-primary">
+                {{ entity.resumen }}
+            </div>
+
+            <div class="page-header"></div>
 
             <table class="table">
                 <tbody class=".table-hover">
-                <tr>
-                    <th>Lugar</th>
-                    <td>{{ entity.lugar }}</td>
-                </tr>
-                <tr>
-                    <th>Fecha</th>
-                    <td>{{ entity.fecha|date('Y-m-d') }}</td>
-                </tr>
-                <tr>
-                    <th>Hora</th>
-                    <td>{{ entity.hora|date('H:i') }}</td>
-                </tr>
-                <tr>
-                    <th>Ponente</th>
-                    <td>{{ entity.ponente }}</td>
-                </tr>
-                <tr>
-                    <th>Origen</th>
-                    <td>{{ entity.origen }}</td>
-                </tr>
-                <tr>
-                    <th>Platica</th>
-                    <td>{{ entity.platica }}</td>
-                </tr>
-                <tr>
-                    <th>Resumen</th>
-                    <td>{{ entity.resumen }}</td>
-                </tr>
+                {% if entity.coment %}
                 <tr>
                     <th>Comentario</th>
                     <td>{{ entity.coment }}</td>
                 </tr>
-                <tr>
+                {% endif %}
+                <tr class="text-muted ">
                     <th>Creado</th>
-                    <td>{{ entity.fechaCap|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ entity.fechaCap|localizeddate('none', 'none',  'es-MX', null, "d 'de' MMMM 'del' Y") }}</td>
                 </tr>
-                <tr>
+                <tr class="text-muted">
                     <th>Modificado</th>
-                    <td>{{ entity.modified |date('Y-m-d H:i:s') }}</td>
+                    <td>{{ entity.modified |localizeddate('none', 'none',  'es-MX', null, "d 'de' MMMM 'del' Y") }}</td>
                 </tr>
                 </tbody>
             </table>

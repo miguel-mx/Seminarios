@@ -38,11 +38,6 @@
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Ponente</th>
-                    {#<th>Origen</th>
-                    <th>Platica</th>
-                    <th>Resumen</th>
-                    <th>Comentario</th>
-                    <th>Fecha de captura</th>#}
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -55,19 +50,11 @@
                         <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif %}</td>
                         <td>{% if entity.hora %}{{ entity.hora|date('H:i:s') }}{% endif %}</td>
                         <td>{{ entity.ponente }}</td>
-                        {#<td>{{ entity.origen }}</td>
-                        <td>{{ entity.platica }}</td>
-                        <td>{{ entity.resumen | wordwrap(20) | nl2br }}</td>
-                        <td>{{ entity.coment }}</td>#}
-                        {#<td>{% if entity.fechaCap %}{{ entity.fechaCap|date('Y-m-d H:i:s') }}{% endif %}</td>#}
                         <td>
-
-
                                 {% if app.user and is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('evento_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i>&nbsp;editar</a> |
                                 {% endif %}
                                     <a href="{{ path('eventos_anteriores',{'seminario': entity.seminario.id}) }}" class="btn btn-default btn-xs">Eventos anteriores</a>
-
                         </td>
                     </tr>
                 {% endfor %}

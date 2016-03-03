@@ -53,7 +53,8 @@
                                 <a href="{{ path('seminario_edit', { 'id': entity.id }) }}" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i>&nbsp;editar</a> |
                             {% endif %}
 
-                            <a href="{{ path('evento_new', { 'id': entity.id }) }}" class="btn btn-default btn-xs">Crear Evento</a>
+                            <a href="{{ path('evento_new', { 'id': entity.id }) }}" class="btn btn-default btn-xs">
+                                <i class="fa fa-plus"></i> Crear Evento</a>
                             {# <a href="http://localhost/sd/app_dev.php/evento/{{ entity.id }}/new">Crear Evento</a> #}
 
                             </ul>
