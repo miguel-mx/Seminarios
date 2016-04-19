@@ -20,7 +20,8 @@ var DatepickerCtrl = function ($scope) {
     //};
 
     $scope.toggleMin = function() {
-        $scope.minDate = $scope.minDate ? null : new Date();
+        //$scope.minDate = $scope.minDate ? null : new Date();
+        $scope.minDate = new Date('01-01-2016');
     };
     $scope.toggleMin();
 

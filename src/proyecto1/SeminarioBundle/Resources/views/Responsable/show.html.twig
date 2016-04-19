@@ -10,10 +10,9 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     {{ flashMessage }}
                 </div>
-
             {% endfor %}
             <h3><i class="fa fa-user"></i>&nbsp;Responsable</h3>
-<br>
+            <br>
             <table class="table table-bordered">
                 <tbody class=".table-hover">
                 <tr>
@@ -56,6 +55,22 @@
                 {% endif %}
                 <li><a href="{{ path('responsable') }}" class="btn btn-primary" >Ir a lista</a></li>
             </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+            {% for seminario in entity.seminarios %}
+
+                {% for evento in seminario.eventos %}
+                <div class="well-sm">
+                    <h4>{{ evento.lugar }}</h4><br />
+                    {{ evento.ponente }} - {{ evento.origen }}
+                    {{ evento.platica }}
+                </div>
+                {% endfor %}
+
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -14,6 +14,10 @@ eventos_matmor:
     path:     /matmor
     defaults: { _controller: "SeminarioBundle:Evento:semanaMatmor" }
 
+eventos_matmor_new:
+    path:     /matmor-new
+    defaults: { _controller: "SeminarioBundle:Evento:semanaMatmorNew" }
+
 eventos_semanasig:
     path:     /semana-siguiente
     defaults: { _controller: "SeminarioBundle:Evento:semanasig" }

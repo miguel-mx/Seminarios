@@ -90,6 +90,19 @@ class SeminarioRepository extends EntityRepository
         return $consulta->getResult();
     }
 
+    public function findEventosProx()
+    {
+        $hoy = date('Y/m/d');
+
+        $em = $this->getEntityManager();
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha > :hoy ORDER BY e.fecha DESC';
+        $consulta = $em->createQuery($dql);
+        $consulta->setParameters(array('hoy'=>$hoy));
+
+        return $consulta->getResult();
+
+    }
+
 }
 
 

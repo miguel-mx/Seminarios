@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
 
     <title>{% block title %}Seminarios CCM-UNAM{% endblock %}</title>
 
@@ -28,24 +28,21 @@
 
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="{{ asset('bundles/seminario/css/signin.css')}}" type="text/css">
-
-
-
     {% endblock %}
 
 </head>
 <style type="text/css">
-body {
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-font-size: 14px;
-line-height: 1.42857;
-color: #333;
-background-color: #FFF;
-}
+    body {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        line-height: 1.42857;
+        color: #333;
+        background-color: #FFF;
+    }
 
 </style>
 <body>
-{% block login %}
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
 
     <div class="container">
@@ -83,40 +80,31 @@ background-color: #FFF;
     </div>
 </nav>
 
-
 <div class="container">
 
     {% block body %}
-        <div class="starter-template">
-            <h1>Bootstrap starter template</h1>
-            <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-        </div>
     {% endblock %}
 
-
-{% endblock %}
-
-
-{% block js %}
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="//select2.github.io/select2/select2-3.4.2/select2.js"></script>
-    <script type="text/javascript">
-        $('.select2').select2();
-    </script>
-    <script src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#myTable').DataTable();
-        });
-    </script>
+    {% block js %}
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="//select2.github.io/select2/select2-3.4.2/select2.js"></script>
+        <script type="text/javascript">
+            $('.select2').select2();
+        </script>
+        <script src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#myTable').DataTable();
+            });
+        </script>
 
 
-{% endblock %}
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+    {% endblock %}
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 </body>
 </html>

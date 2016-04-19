@@ -70,6 +70,19 @@ class EventoController extends Controller
         ));
 
     }
+    public function semanaMatmorNewAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
+        /*        if(!$entities)
+                {
+                    throw $this->createNotFoundException('No se han encontrado eventos');
+                }*/
+        return $this->render('SeminarioBundle:Evento:eventos_matmor_new.html.twig', array(
+            'entities' => $entities,
+        ));
+
+    }
     public function semanasigAction()
     {
 
@@ -91,10 +104,11 @@ class EventoController extends Controller
      */
     public function indexAction()
     {
-
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SeminarioBundle:Evento')->findAll();
+        // Encuentra eventos futuros
+        $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosProx();
+        //$entities = $em->getRepository('SeminarioBundle:Evento')->findAll();
        // $entities = $em->getRepository('SeminarioBundle:Seminario')->findAllOrderedByDate();
 
         return $this->render('SeminarioBundle:Evento:index.html.twig', array(
@@ -116,13 +130,13 @@ class EventoController extends Controller
         // Recupera los responsables de los seminarios
         $entity->setResponsables($entity->getSeminario()->getResponsablesStr());
 
-        $fecha = new \DateTime('now');
+/*        $fecha = new \DateTime('now');
         $efecha = $entity->getFecha();
 
         if ( $efecha < $fecha ) {
             throw $this->createNotFoundException('La fecha no es valida.');
 
-        }
+        }*/
 
         if ($form->isValid()) {
 
@@ -225,11 +239,11 @@ class EventoController extends Controller
 
         $entity = $em->getRepository('SeminarioBundle:Evento')->find($id);
         $fecha = new \DateTime('now');
-        $efecha = $entity->getFecha();
+/*        $efecha = $entity->getFecha();
         if ( $efecha < $fecha ) {
             throw $this->createNotFoundException('No se puede editar.');
 
-        }
+        }*/
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Evento entity.');
         }
