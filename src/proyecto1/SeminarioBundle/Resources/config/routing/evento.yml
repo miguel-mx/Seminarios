@@ -3,8 +3,10 @@ evento:
     defaults: { _controller: "SeminarioBundle:Evento:index" }
 
 eventos_semana:
-    path:     /semana
-    defaults: { _controller: "SeminarioBundle:Evento:semana" }
+    path:     /semana.{_format}
+    defaults: { _controller: "SeminarioBundle:Evento:semana", _format: "html" }
+    requirements:
+        _format:  html|xml
 
 pccm:
     path:     /pccm
@@ -20,7 +22,14 @@ eventos_matmor_new:
 
 eventos_semanasig:
     path:     /semana-siguiente
-    defaults: { _controller: "SeminarioBundle:Evento:semanasig" }
+    defaults: { _controller: "SeminarioBundle:Evento:semanaSig" }
+
+coloquio_semana:
+    path:     /coloquio-semana.{_format}
+    defaults: { _controller: "SeminarioBundle:Evento:coloquioSemana" }
+    requirements:
+        _format:  xml
+
 eventos_anteriores:
     path:     /{seminario}/anteriores
     defaults: { _controller: "SeminarioBundle:Evento:anteriores" }

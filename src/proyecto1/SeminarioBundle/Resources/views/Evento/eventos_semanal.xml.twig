@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ccm>
+    {% for entity in entities %}
+<evento>
+        <seminario>{{ entity.seminario | upper }}</seminario>
+        <titulo>{{ entity.platica }}</titulo>
+        <ponente>{{ entity.ponente }}</ponente>
+        <resumen>{{ entity.resumen }}</resumen>
+        <origen>{{ entity.origen }}</origen>
+        <fecha>{{ entity.fecha |localizeddate('none', 'none', 'es-MX', null, "d 'de' MMMM") }}</fecha>
+        <lugar>{{ entity.lugar }}</lugar>
+        <hora>{{ entity.hora|date('H:i') }} horas</hora>
+    </evento>
+    {% endfor %}
+</ccm>

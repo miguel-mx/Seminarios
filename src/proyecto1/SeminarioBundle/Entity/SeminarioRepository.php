@@ -40,16 +40,18 @@ class SeminarioRepository extends EntityRepository
         $consulta->setParameters(array('seminario'=>$seminario));
         return $consulta->getResult();
     }
+
     public function findEventosSemana()
     {
         $lunes= date('Y/m/d',strtotime('Monday this week'));
         $viernes= date('Y/m/d',strtotime('Friday this week'));
         $em = $this->getEntityManager();
-        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fecha DESC';
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fecha ASC';
         $consulta = $em->createQuery($dql);
         $consulta->setParameters(array('lunes'=>$lunes,'viernes'=>$viernes));
         return $consulta->getResult();
     }
+
     public function findEventosSemanaSig()
     {
         $fecha= date("W")+1;
@@ -65,15 +67,14 @@ class SeminarioRepository extends EntityRepository
     }
     public function findEventosToCalendar()
     {
-       $fecha= date("W");
+        $fecha= date("W");
         $lunes= date('Y/m/d',strtotime(date("Y")."W".$fecha."1"));
 
         $fecha2= date("W")+1;
         $viernes= date('Y/m/d',strtotime(date("Y")."W".$fecha2."5"));
 
-
         $em = $this->getEntityManager();
-         $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fecha DESC';
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes ORDER BY e.fecha DESC';
         $consulta = $em->createQuery($dql);
         //$consulta->setParameter('fecha',$fechaHoy);
         //$consulta-> setParameter('seminario',$seminario);
@@ -100,8 +101,20 @@ class SeminarioRepository extends EntityRepository
         $consulta->setParameters(array('hoy'=>$hoy));
 
         return $consulta->getResult();
-
     }
+
+    public function findColoquioSemana()
+    {
+        $lunes= date('Y/m/d',strtotime('Monday this week'));
+        $viernes= date('Y/m/d',strtotime('Friday this week'));
+        $em = $this->getEntityManager();
+        $dql = 'SELECT e FROM SeminarioBundle:Evento e WHERE e.fecha BETWEEN :lunes AND :viernes AND e.nombre LIKE :nombre ORDER BY e.fecha DESC';
+        $consulta = $em->createQuery($dql);
+        $consulta->setParameters(array('lunes'=>$lunes,'viernes'=>$viernes));
+
+        return $consulta->getResult();
+    }
+
 
 }
 

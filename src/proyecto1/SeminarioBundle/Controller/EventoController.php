@@ -33,7 +33,9 @@ class EventoController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventos(1);
+
+        $pccm = $em->getRepository('SeminarioBundle:Seminario')->findOneByNombre('COLOQUIO DEL PCCM');
+        $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventos($pccm->getId());
 
         /*        if(!$entities)
                 {
@@ -44,19 +46,17 @@ class EventoController extends Controller
         ));
 
     }
-    public function semanaAction()
+
+    public function semanaAction($_format)
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
-/*        if(!$entities)
-        {
-            throw $this->createNotFoundException('No se han encontrado eventos');
-        }*/
-        return $this->render('SeminarioBundle:Evento:eventos_semanal.html.twig', array(
+
+        return $this->render('SeminarioBundle:Evento:eventos_semanal.'.$_format.'.twig', array(
             'entities' => $entities,
         ));
-
     }
+
     public function semanaMatmorAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -70,32 +70,44 @@ class EventoController extends Controller
         ));
 
     }
+
     public function semanaMatmorNewAction()
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
-        /*        if(!$entities)
-                {
-                    throw $this->createNotFoundException('No se han encontrado eventos');
-                }*/
+
         return $this->render('SeminarioBundle:Evento:eventos_matmor_new.html.twig', array(
             'entities' => $entities,
         ));
 
     }
-    public function semanasigAction()
+    public function semanaSigAction()
     {
-
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemanaSig();
-/*        if(!$entities)
-        {
-            throw $this->createNotFoundException('No se han encontrado eventos');
-        }*/
+
         return $this->render('SeminarioBundle:Evento:eventos_sig_semana.html.twig', array(
             'entities' => $entities,
         ));
 
+    }
+
+    public function coloquioSemanaAction()
+    {
+        $coloquio = new Evento();
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('SeminarioBundle:Seminario')->findEventosSemana();
+
+        foreach($entities as $entity) {
+            if(!strncmp ($entity->getSeminario()->getNombre(), 'COLOQUIO', 8)) {
+                $coloquio = $entity;
+            }
+        }
+
+        return $this->render('SeminarioBundle:Evento:coloquio_semana.xml.twig', array(
+            'entity' => $coloquio,
+        ));
     }
 
     /**

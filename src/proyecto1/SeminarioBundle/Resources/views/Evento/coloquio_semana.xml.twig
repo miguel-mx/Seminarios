@@ -1,0 +1,34 @@
+{% if entity %}
+
+<ccm>
+    <evento>
+        <seminario>{{ entity.seminario | upper }}</seminario>
+        <titulo>{{ entity.platica }}</titulo>
+        <ponente>{{ entity.ponente }}</ponente>
+        <resumen>{{ entity.resumen }}</resumen>
+        <origen>{{ entity.origen }}</origen>
+        <lugar>{{ entity.lugar }}</lugar>
+        <fecha>{{ entity.fecha|date }}</fecha>
+        {% if entity.hora %}
+            <hora>{{ entity.hora|date('H:i') }} horas</hora>
+        {% else %}
+            <hora></hora>
+        {% endif %}
+    </evento>
+</ccm>
+
+{% else %}
+
+<ccm>
+    <evento>
+        <seminario></seminario>
+        <titulo></titulo>
+        <ponente></ponente>
+        <resumen></resumen>
+        <origen></origen>
+        <lugar></lugar>
+        <hora></hora>
+    </evento>
+</ccm>
+
+{% endif %}
